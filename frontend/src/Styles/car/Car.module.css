@@ -11,14 +11,14 @@ height: 1000px;
 }
 .Sidebarcontainer{
 width: 20%;
-height: 100%;
+
 
 }
 
 
 .rightcontainer{
     width: 74%;
-    height: 100%;
+  
     border: 1px solid yellow;
 }
 .Filtercontainer{

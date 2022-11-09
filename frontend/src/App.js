@@ -4,7 +4,7 @@ import Car from './Pages/Car/Car';
 
 function App() {
   return (
-    <div className="App">
+    <div >
   
    <Car/>
     </div>
