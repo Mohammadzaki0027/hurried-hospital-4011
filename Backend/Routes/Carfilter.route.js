@@ -2,10 +2,10 @@ const { CarfilterModel } = require("../Model/Car.model");
 
 const { Router } = require("express");
 const carRouter = Router();
-carRouter.get("/", async (req, res) => {
+carRouter.get("/getfilter", async (req, res) => {
   const data = await CarfilterModel.find();
-console.log(data);
-  res.send("get req");
+
+  res.send({msg:"data",data});
 });
 
 carRouter.post("/filterdata", async (req, res) => {

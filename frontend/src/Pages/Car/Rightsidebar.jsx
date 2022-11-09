@@ -1,9 +1,20 @@
 import React from "react";
 import style from "../../Styles/car/Right.module.css";
-import { TiTickOutline } from "react-icons/ti";
+import { TiArrowMaximiseOutline, TiTickOutline } from "react-icons/ti";
 import { BiAlarm } from "react-icons/bi";
 import Carbox from "./Carbox";
+import axios from "axios"
 const Rightsidebar = () => {
+  const[filterdata,setFilterdata]=React.useState([])
+  React.useEffect(()=>{
+axios.get("http://localhost:8080/getfilter").then((r)=>{
+  
+  setFilterdata(r.data.data)
+})
+  },[filterdata])
+const handelclick=(a,b)=>{
+console.log(a,b);
+}
   return (
     <div className={style.rightsidecontainer}>
       <div className={style.textbox}>
@@ -83,7 +94,11 @@ const Rightsidebar = () => {
 
 
 <div className={style.carbox}>
-<Carbox/>
+  {filterdata.map((e)=>(
+    <Carbox {...e} handelclick={handelclick} key={e._id}/>
+    )
+  )}
+
 </div>
 
 

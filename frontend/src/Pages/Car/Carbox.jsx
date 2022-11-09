@@ -3,15 +3,18 @@ import style from "../../Styles/car/box.module.css";
 import { RiContactsFill } from "react-icons/ri";
 
 import { BsFillBagFill } from "react-icons/bs";
-const Carbox = () => {
+const Carbox = ({seat,image,vehtype,price,handelclick}) => {
+
   return (
-    <div className={style.corboxcon}>
+    <div className={style.corboxcon} onClick={()=>{
+      handelclick(seat,vehtype)
+    }}>
       <div className={style.text1}>
-        <h1>Economy</h1>
+        <h1>{vehtype}</h1>
       </div>
       <div className={style.symbol}>
         <div>
-          <h1>25</h1>{" "}
+          <h1>{seat}</h1>{" "}
         </div>
         <div>
           <h1 style={{ fontSize: "18px" }}>
@@ -29,13 +32,13 @@ const Carbox = () => {
       </div>
       <div className={style.image}>
         <img
-          src="https://ctimg-fleet.cartrawler.com/generic/economy/primary.png?w=187.19999313354492&auto=compress"
-          alt=""
-          srcset=""
+          src={image}
+          alt="car_image"
+         
         />
       </div>
       <div className={style.price}>
-        <h1>From Rs 5253</h1>
+        <h1>`From Rs {price}`</h1>
       </div>
     </div>
   );

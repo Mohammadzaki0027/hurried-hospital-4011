@@ -14,7 +14,7 @@ const Sidebar = () => {
       <div className={style.summ}>
         <div className={style.texttrip}>
           <h1>Trip Summary</h1>
-          <hr class={style.class1} />
+          <hr className={style.class1} />
           <div className={style.pickup}>
             <div>
               <h2 style={{ marginTop: "2px", fontSize: "20px" }}>
@@ -77,7 +77,7 @@ const Sidebar = () => {
       <div className={style.filter}>
         <div className={style.filtertrip}>
           <h1 className={style.filterh1}>Filter</h1>
-          <hr class={style.class1} />
+          <hr className={style.class1} />
 
           <div className={style.pickup}>
             <div>
@@ -100,7 +100,7 @@ const Sidebar = () => {
           <div>
             <h2>The average car price is ₨ 11 (per rental)</h2>
           </div>
-          <hr class={style.class1} />
+          <hr className={style.class1} />
 
           <div className={style.pickup}>
             <div>
@@ -170,7 +170,7 @@ const Sidebar = () => {
             </div>
           </div>
 
-          <hr class={style.class1} />
+          <hr className={style.class1} />
 
           <div className={style.pickup}>
             <div>
