@@ -1,29 +1,21 @@
 .carcontainer{
     width: 80%;
 height: 1000px;
-    border: 1px solid red;
-    display: flex;
+ display: flex;
     justify-content: space-around;
     background-color: #E2E2E2;
- 
-    margin: auto;
-   
-}
+ margin: auto;
+   }
 .Sidebarcontainer{
 width: 20%;
-
-
 }
-
-
 .rightcontainer{
     width: 74%;
-  
-    border: 1px solid yellow;
-}
+  }
 .Filtercontainer{
     display: none;
 }
+
 @media screen and (max-width: 900px) {
     .Sidebarcontainer{
        display: none;

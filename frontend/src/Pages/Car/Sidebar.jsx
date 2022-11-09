@@ -203,7 +203,8 @@ const Sidebar = () => {
                 border={"1px solid black"}
                 borderRadius={"2px"}
                 marginTop={"5px"}
-                ml={"20px"}
+                ml={"15px"}
+            
               ></Checkbox>
             </div>
             <div>
@@ -214,7 +215,7 @@ const Sidebar = () => {
                   color: "grey",
                 }}
               >
-                Air-Conditoning
+                Air-Conditioning
               </h2>
             </div>
           </div>
@@ -225,7 +226,7 @@ const Sidebar = () => {
                 border={"1px solid black"}
                 borderRadius={"2px"}
                 marginTop={"5px"}
-                marginLeft={"-10px"}
+                marginLeft={"-22px"}
               ></Checkbox>
             </div>
             <div>
@@ -234,7 +235,7 @@ const Sidebar = () => {
                   fontSize: "18px",
                   fontFamily: "bold",
                   color: "grey",
-                  marginLeft: "12px",
+               
                 }}
               >
                 Petrol
