@@ -1,4 +1,4 @@
-import { Button, Image, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
+import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import { AiOutlineDown } from 'react-icons/ai'
 import { HiBuildingOffice2 } from 'react-icons/hi2'
 import { ImAirplane } from "react-icons/im"

@@ -1,5 +1,5 @@
-import { Box, Button, Image, MenuButton } from '@chakra-ui/react';
-import Logo from '../../Logo.png'
+import { Box, Button, Image } from '@chakra-ui/react';
+import Logo from '../../Images/Logo.png'
 import DropDown from './DropDown';
 import { GrLanguage } from 'react-icons/gr'
 import { BsFillBellFill } from 'react-icons/bs'
