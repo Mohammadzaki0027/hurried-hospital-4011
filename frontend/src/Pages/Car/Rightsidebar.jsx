@@ -7,6 +7,7 @@ import { Button } from "@chakra-ui/react";
 import axios from "axios";
 import Infodiv from "./Infodiv";
 import Pricediv from "./Pricediv";
+import {   useSearchParams } from "react-router-dom";
 const Rightsidebar = () => {
   const [filterdata, setFilterdata] = React.useState([]);
   const [data, setData] = React.useState([]);
@@ -15,13 +16,31 @@ const Rightsidebar = () => {
       setData(r.data.data);
     });
   }
+  const [SearchParams, setSearchParams] = useSearchParams();
+  const [selectrating, setSelectrating] = React.useState(
+    SearchParams.getAll("tag") || []
+  );
+ 
+  const handelrating = (tag) => {
+    let newtag = [...selectrating];
+    if (newtag.includes(tag)) {
+      newtag.splice(newtag.indexOf(tag), 1);
+    } else {
+      newtag.push(tag);
+    }
+    setSelectrating(newtag);
+    setSearchParams({ tag: newtag });
+  };
+
   React.useEffect(() => {
+    
     axios.get("http://localhost:8080/getfilter").then((r) => {
       setFilterdata(r.data.data);
     });
-  }, [filterdata]);
+    
+  }, []);
   React.useEffect(() => {
-    fetch();
+     fetch();
   }, []);
   const handelclick = (a, b) => {};
   return (
@@ -117,6 +136,7 @@ const Rightsidebar = () => {
             _hover={"none"}
             color={"white"}
             className={style.filterbutton}
+            onClick={()=>handelrating("rating")}
           >
             Sort By Rating
           </Button>
@@ -133,7 +153,7 @@ const Rightsidebar = () => {
         </div>
       </div>
       {data?.map((e) => (
-        <div className={style.maindiv}>
+        <div className={style.maindiv} key={e._id}>
           <Carbox {...e} />
           <Infodiv />
           <Pricediv price={e.price} />
