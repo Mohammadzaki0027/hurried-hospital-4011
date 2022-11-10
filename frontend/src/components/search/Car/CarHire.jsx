@@ -8,35 +8,35 @@ const CarHire = () => {
     <>
       <Stack mt=".7rem">
         <Box display="flex" gap={4}>
-        <InputGroup>
-          <InputLeftElement
-            pointerEvents='none'
-            children={<IoLocationSharp size={22} color='#343b53' />}
-          />
-          <Input type='text' placeholder='Pick-up' />
-        </InputGroup>
-        <InputGroup>
-          <InputLeftElement
-            pointerEvents='none'
-            children={<IoLocationSharp size={22} color='#343b53' />}
-          />
-          <Input type='text' placeholder='Same as pick-up' />
-        </InputGroup>
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents='none'
+              children={<IoLocationSharp size={22} color='#343b53' />}
+            />
+            <Input type='text' placeholder='Pick-up' />
+          </InputGroup>
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents='none'
+              children={<IoLocationSharp size={22} color='#343b53' />}
+            />
+            <Input type='text' placeholder='Same as pick-up' />
+          </InputGroup>
         </Box>
         <Box display="flex" gap={4}>
           <InputGroup gap={2}>
-          <Input type='date' />
-          <Input type='time' aria-label='Time' placeholder="Time" />
-        </InputGroup>
-        <InputGroup gap={2}>
-          <Input type='date' />
-          <Input type='time' aria-label='Time' placeholder="Time" />
-        </InputGroup>
+            <Input type='date' />
+            <Input type='time' aria-label='Time' placeholder="Time" />
+          </InputGroup>
+          <InputGroup gap={2}>
+            <Input type='date' />
+            <Input type='time' aria-label='Time' placeholder="Time" />
+          </InputGroup>
         </Box>
-        
+
       </Stack>
       <VStack mt="1.7rem">
-        <Button colorScheme='none' color="white" bg="#3763d8" w="12vw" h="12vh">Search</Button>
+        <Button colorScheme='none' color="white" _hover={{ bg: "#2c4fac" }} bg="#3763d8" px="4rem" py="1.4rem">Search</Button>
       </VStack>
     </>
   )
