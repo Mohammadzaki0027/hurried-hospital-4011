@@ -17,6 +17,12 @@ const Homepage = () => {
                 <br />
                 <br />
                 <Image borderRadius=".6rem" src={reward} />
+                <Box display={"flex"} my="2rem" justifyContent={"center"}>
+                    <Image src="https://tpc.googlesyndication.com/simgad/4477719789317755579?" />
+                </Box>
+                <Box display={"flex"} my="2rem" justifyContent={"center"}>
+                    <Image src="https://a.travel-assets.com/travel-assets-manager/gmvd-1482-bookearly-emea/667x320.jpg" />
+                </Box>
             </Box>
             <Footer />
         </>
