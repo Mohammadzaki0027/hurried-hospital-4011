@@ -2,17 +2,16 @@ const { Router } = require("express");
 const { CarCartModel } = require("../Model/Carcart.model");
 const CarCartRoute = Router();
 
-CarCartRoute.get("/getcart", async (req, res) => {
-  const data = await CarCartModel.find();
-
-  res.send({ msg: "data", data });
+CarCartRoute.get("/getcar", async (req, res) => {
+   const data = await CarCartModel.find();
+  res.send({ msg: "data" ,data});
 });
 
 CarCartRoute.post("/postcar", async (req, res) => {
   const { seat, image, vehtype, price } = req.body;
-
+console.log(req.body,"data");
   try {
-    await CarfilterModel.insertMany([{ seat, image, vehtype, price }]);
+    await CarCartModel.insertMany([{ seat, image, vehtype, price }]);
     
   res.send("data aded");
   } catch (error) {
@@ -21,3 +20,5 @@ CarCartRoute.post("/postcar", async (req, res) => {
   }
 
 });
+
+module.exports={CarCartRoute}

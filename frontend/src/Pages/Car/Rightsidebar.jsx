@@ -5,30 +5,30 @@ import { BiAlarm } from "react-icons/bi";
 import Carbox from "./Carbox";
 import { Button } from "@chakra-ui/react";
 import axios from "axios";
+import Infodiv from "./Infodiv";
+import Pricediv from "./Pricediv";
 const Rightsidebar = () => {
-
   const [filterdata, setFilterdata] = React.useState([]);
+  const [data, setData] = React.useState([]);
+  function fetch() {
+    axios.get("http://localhost:8080/getcar").then((r) => {
+      setData(r.data.data);
+    });
+  }
   React.useEffect(() => {
     axios.get("http://localhost:8080/getfilter").then((r) => {
       setFilterdata(r.data.data);
     });
   }, [filterdata]);
+  React.useEffect(() => {
+    fetch();
+  }, []);
   const handelclick = (a, b) => {};
   return (
     <div className={style.rightsidecontainer}>
       <div className={style.textbox}>
         <div className={style.symboltick}>
-          <div
-            style={{
-              height: "35px",
-              width: "100%",
-              alignItems: "center",
-              marginTop: "7px",
-              marginLeft: "5px",
-              display: "flex",
-              justifyContent: "space-evenly",
-            }}
-          >
+          <div className={style.textboxinner}>
             <div
               style={{
                 borderRadius: "12.5px",
@@ -42,11 +42,11 @@ const Rightsidebar = () => {
                 backgroundColor: "green",
               }}
             >
-              <h1 style={{ fontSize: "22px", width: "70%" }}>
+              <h1 className={style.symbol}>
                 <TiTickOutline style={{ color: "white" }} />
               </h1>
             </div>
-            <h1 style={{ color: "green", fontSize: "18px" }}>
+            <h1 className={style.textboxinnerh1}>
               Flexible cancellation with every booking.
             </h1>
           </div>
@@ -79,11 +79,11 @@ const Rightsidebar = () => {
                 color: "#D64F06",
               }}
             >
-              <h1 style={{ fontSize: "25px", width: "70%" }}>
+              <h1 className={style.symbol}>
                 <BiAlarm style={{ color: "#D64F06" }} />
               </h1>
             </div>
-            <h1 style={{ color: "#D64F06", fontSize: "18px" }}>
+            <h1 className={style.textboxinnerh1}>
               Prices are rising, book now to lock in the price.
             </h1>
           </div>
@@ -102,21 +102,43 @@ const Rightsidebar = () => {
           <h1 style={{ marginTop: "10px" }}>Sort By</h1>
         </div>
         <div>
-          <Button bg={"#00355d"} _hover={"none"} color={"white"}>
+          <Button
+            bg={"#00355d"}
+            _hover={"none"}
+            color={"white"}
+            className={style.filterbutton}
+          >
             Recommended
           </Button>
         </div>
         <div>
-          <Button bg={"#00355d"} _hover={"none"} color={"white"}>
+          <Button
+            bg={"#00355d"}
+            _hover={"none"}
+            color={"white"}
+            className={style.filterbutton}
+          >
             Sort By Rating
           </Button>
         </div>
         <div>
-          <Button bg={"#00355d"} _hover={"none"} color={"white"}>
+          <Button
+            bg={"#00355d"}
+            _hover={"none"}
+            color={"white"}
+            className={style.filterbutton}
+          >
             Price(low to high)
           </Button>
         </div>
       </div>
+      {data?.map((e) => (
+        <div className={style.maindiv}>
+          <Carbox {...e} />
+          <Infodiv />
+          <Pricediv price={e.price} />
+        </div>
+      ))}
     </div>
   );
 };
