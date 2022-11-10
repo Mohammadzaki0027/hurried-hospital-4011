@@ -183,6 +183,7 @@ function Flight() {
           <Breadcrumb
             spacing="8px"
             fontSize={"14px"}
+            
             separator={<ChevronRightIcon color="gray.900" />}
           >
             <BreadcrumbItem>

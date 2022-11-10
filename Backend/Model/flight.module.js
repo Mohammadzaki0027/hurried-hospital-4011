@@ -8,6 +8,7 @@ const FlightSchema=mongoose.Schema({
     "flight_logo":{type:String,require:true},
     "flight_company": {type:String,require:true},
     "price":{type:String,require:true},
+    
     "return": {type:String,require:true},    
 })
 const FlightModule=mongoose.model("flight",FlightSchema)
