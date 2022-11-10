@@ -37,3 +37,14 @@ border-radius: 6px;
     justify-content: space-evenly;
 }
 
+.fitercontainer{
+    width: 70%;
+    height: 50px;
+    margin-left: 25%;
+    margin-top: 10px;
+ 
+    display: flex;
+ justify-content: flex-end;
+ justify-content: space-evenly;
+    
+    }

@@ -3,18 +3,17 @@ import style from "../../Styles/car/Right.module.css";
 import { TiArrowMaximiseOutline, TiTickOutline } from "react-icons/ti";
 import { BiAlarm } from "react-icons/bi";
 import Carbox from "./Carbox";
-import axios from "axios"
+import { Button } from "@chakra-ui/react";
+import axios from "axios";
 const Rightsidebar = () => {
-  const[filterdata,setFilterdata]=React.useState([])
-  React.useEffect(()=>{
-axios.get("http://localhost:8080/getfilter").then((r)=>{
-  
-  setFilterdata(r.data.data)
-})
-  },[filterdata])
-const handelclick=(a,b)=>{
 
-}
+  const [filterdata, setFilterdata] = React.useState([]);
+  React.useEffect(() => {
+    axios.get("http://localhost:8080/getfilter").then((r) => {
+      setFilterdata(r.data.data);
+    });
+  }, [filterdata]);
+  const handelclick = (a, b) => {};
   return (
     <div className={style.rightsidecontainer}>
       <div className={style.textbox}>
@@ -90,30 +89,34 @@ const handelclick=(a,b)=>{
           </div>
         </div>
       </div>
-{/* box ending */}
+      {/* box ending */}
 
+      <div className={style.carbox}>
+        {filterdata?.map((e) => (
+          <Carbox {...e} handelclick={handelclick} key={e._id} />
+        ))}
+      </div>
 
-<div className={style.carbox}>
-  {filterdata?.map((e)=>(
-    <Carbox {...e} handelclick={handelclick} key={e._id}/>
-    )
-  )}
-
-</div>
-
-
-
-<div className={style.fitercontainer}>
-  
-</div>
-
-
-
-
-
-
-
-
+      <div className={style.fitercontainer}>
+        <div>
+          <h1 style={{ marginTop: "10px" }}>Sort By</h1>
+        </div>
+        <div>
+          <Button bg={"#00355d"} _hover={"none"} color={"white"}>
+            Recommended
+          </Button>
+        </div>
+        <div>
+          <Button bg={"#00355d"} _hover={"none"} color={"white"}>
+            Sort By Rating
+          </Button>
+        </div>
+        <div>
+          <Button bg={"#00355d"} _hover={"none"} color={"white"}>
+            Price(low to high)
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
