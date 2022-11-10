@@ -1,12 +1,14 @@
 
 import './App.css';
-import Car from './Pages/Car/Car';
+
+import AllRoutes from './Routes/AllRoutes';
 
 function App() {
   return (
-    <div >
-  
-   <Car/>
+    <div className="App">
+
+   <AllRoutes/>
+
     </div>
   );
 }
