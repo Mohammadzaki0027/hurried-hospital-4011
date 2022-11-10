@@ -26,6 +26,7 @@ const MainDiv = styled.div`
   }
   input {
     appearance: none;
+    
     background-color: #fff;
     border: 1px solid #727483;
     border-top-color: rgb(114, 116, 131);
