@@ -58,10 +58,13 @@ import { useEffect } from "react";
 import Navbar from "../components/navbar/Navbar";
 import { HiOutlineArrowsRightLeft } from "react-icons/hi2";
 import { useState } from "react";
+import { FlightCheckout } from "./FlightCheckout";
+import { Link } from "react-router-dom";
 function Flight() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.Flightreducer.flight);
   // const { isOpen, onOpen, onClose } = useDisclosure();
+  const isTrue=false
   const { 
     isOpen: isOpenModal, 
     onOpen: onOpenModal, 
@@ -678,8 +681,10 @@ const {
                   <Text>Included up to 15 kg</Text>
                 </Flex>
                 <Flex>
-
-                  <Button marginTop={"10px"} width="100%" colorScheme="blue">Select</Button>
+                  
+                   <Button marginTop={"10px"} width="100%" colorScheme="blue">
+                   <Link to="/flightcheckout">Select</Link></Button>
+                  
                 </Flex>
             </Box>
                    
@@ -699,6 +704,9 @@ const {
           />
         </Box>
       </Box>
+      <div style={{display:"none"}}>
+        <FlightCheckout data={single} />
+      </div>
     </>
   );
 }
