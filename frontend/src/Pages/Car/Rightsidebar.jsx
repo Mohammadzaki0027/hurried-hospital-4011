@@ -13,7 +13,7 @@ axios.get("http://localhost:8080/getfilter").then((r)=>{
 })
   },[filterdata])
 const handelclick=(a,b)=>{
-console.log(a,b);
+
 }
   return (
     <div className={style.rightsidecontainer}>
@@ -94,7 +94,7 @@ console.log(a,b);
 
 
 <div className={style.carbox}>
-  {filterdata.map((e)=>(
+  {filterdata?.map((e)=>(
     <Carbox {...e} handelclick={handelclick} key={e._id}/>
     )
   )}
