@@ -1,0 +1,43 @@
+.carcontainer{
+    width: 80%;
+height: 1000px;
+ display: flex;
+    justify-content: space-around;
+    background-color: #E2E2E2;
+ margin: auto;
+   }
+.Sidebarcontainer{
+width: 20%;
+}
+.rightcontainer{
+    width: 74%;
+  }
+.Filtercontainer{
+    display: none;
+}
+
+@media screen and (max-width: 900px) {
+    .Sidebarcontainer{
+       display: none;
+        }
+        .carcontainer{
+            width: 100%;
+            height: 500px;
+            border: 1px solid red;
+            display: flex;
+            flex-direction: column;
+          
+        }
+
+
+.Filtercontainer{
+    display: block;
+}
+        .rightcontainer{
+            width:90%;
+            height: 100%;
+            border: 4px solid black;
+            margin: auto;
+        }
+
+}
