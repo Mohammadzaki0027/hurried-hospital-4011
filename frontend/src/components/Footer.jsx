@@ -1,11 +1,11 @@
-import { Box, Grid, GridItem, Image, Text, VStack } from '@chakra-ui/react'
+import { Box, Grid, GridItem, Image, Stack, Text, VStack } from '@chakra-ui/react'
 import foot from '../Images/Footimg.png'
 import React from 'react'
 
 const Footer = () => {
     return (
         <Box mt="2rem">
-            <Box w="30%" margin="auto" mt="1.5rem" mb="2rem" >
+            <Box w="30%" textAlign="center" margin="auto" mt="1.5rem" mb="2rem" >
                 <Text fontSize=".999rem" fontWeight="700">Explore a world of travel with Expedia</Text>
                 <Text fontSize=".8rem" color="#3662D8" _hover={{ textDecoration: "underline", cursor: "pointer" }}>Discover new places and experiences</Text>
             </Box>
