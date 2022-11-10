@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import FullWidthTextField from "../components/Input";
-// import Checkbox from "@mui/material/Checkbox";
+
 import { Link, Navigate } from "react-router-dom";
-// import GoogleIcon from "@mui/icons-material/Google";
+ 
 import axios from "axios";
 import { Box, Button, Checkbox, Heading, Input } from "@chakra-ui/react";
 // import { StaysInputContext } from "../../Contexts/StaysInputContext";
@@ -96,8 +96,10 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
   return (
     <MainDiv>
       <Box>
-        <Heading>Sign in</Heading>
+        <Heading mr="250px" mb="20px">Sign in</Heading>
+        <Box>or</Box>
         <FullWidthTextField
+        
           text={"Email address"}
           // handle={inputHandler}
           name={"email"}
@@ -147,7 +149,7 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
         </Button>
       </Box>
   
-      <Link to={"/"}>Forgot password?</Link>
+      <Link>Forgot password?</Link>
 
       <p>
         Don't have an account?{" "}
@@ -156,13 +158,14 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
         </span>
       </p>
 
-      <p>or continue with</p>
+      <p>Other ways to sign in</p>
      
-        {/* <Link to="http://188.166.98.109:5000/auth/google">
-           <GoogleIcon sx={{ color: "blue" }} 
+        {/* <Link to="http://188.166.98.109:5000/auth/google"> */}
+           {/* <GoogleIcon sx={{ color: "blue" }} 
                   
-                  /></Link>
-      {auth ? <Navigate to={'/'} />:""} */}
+                  /> */}
+                  {/* </Link> */}
+      {/* {auth ? <Navigate to={'/'} />:""} */}
     </MainDiv>
   );
 };
