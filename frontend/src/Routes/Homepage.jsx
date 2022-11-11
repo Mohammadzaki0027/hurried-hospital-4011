@@ -13,7 +13,7 @@ const Homepage = () => {
     return (
         <>
             <Navbar />
-            <Box w="74%" margin="auto">
+            <Box /*w="74%"*/ w={['95%','95%','95%','78%']} margin="auto">
                 <MainSearch />
                 <br />
                 <br />
@@ -25,7 +25,7 @@ const Homepage = () => {
                     <Image src="https://tpc.googlesyndication.com/simgad/4477719789317755579?" />
                 </Box>
                 <Box display={"flex"} justifyContent="center" my="2rem" >
-                    <Image w="83%" borderRadius=".6rem" src={plan} />
+                    <Image w="100%" borderRadius=".6rem" src={plan} />
                 </Box>
             </Box>
             <Footer />

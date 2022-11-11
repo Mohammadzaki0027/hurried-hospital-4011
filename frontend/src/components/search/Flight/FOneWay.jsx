@@ -1,11 +1,11 @@
-import { Button, HStack, Input, InputGroup, InputLeftElement, VStack } from '@chakra-ui/react'
+import { Button, Input, InputGroup, InputLeftElement, Stack, VStack } from '@chakra-ui/react'
 import { IoLocationSharp } from 'react-icons/io5'
 import React from 'react'
 
 const FOneWay = () => {
     return (
         <>
-            <HStack mt=".7rem">
+            <Stack direction={['column','column','row','row']} mt=".7rem">
                 <InputGroup>
                     <InputLeftElement
                         pointerEvents='none'
@@ -23,7 +23,7 @@ const FOneWay = () => {
                 <InputGroup>
                     <Input type='date' />
                 </InputGroup>
-            </HStack>
+            </Stack>
             <VStack mt="1.7rem">
                 <Button colorScheme='none' color="white" _hover={{bg:"#2c4fac"}} bg="#3763d8" px="4rem" py="1.4rem">Search</Button>
             </VStack>

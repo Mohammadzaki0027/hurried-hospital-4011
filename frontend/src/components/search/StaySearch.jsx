@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, CheckboxGroup, HStack, Input, InputGroup, InputLeftElement, VStack } from '@chakra-ui/react'
+import { Button, Checkbox, CheckboxGroup, HStack, Input, InputGroup, InputLeftElement, Stack, VStack } from '@chakra-ui/react'
 import { IoLocationSharp } from 'react-icons/io5'
 import {MdPerson} from 'react-icons/md'
 import React from 'react'
@@ -6,7 +6,7 @@ import React from 'react'
 const StaySearch = () => {
   return (
     <>
-      <HStack mt=".7rem">
+      <Stack direction={['column','column','row','row']} mt=".7rem">
         <InputGroup>
           <InputLeftElement
             pointerEvents='none'
@@ -16,8 +16,6 @@ const StaySearch = () => {
         </InputGroup>
         <InputGroup>
           <Input type='date' placeholder='Going to' />
-        </InputGroup>
-        <InputGroup>
           <Input type='date' />
         </InputGroup>
         <InputGroup>
@@ -27,7 +25,7 @@ const StaySearch = () => {
           />
           <Input value="1 room, 2 travellers" fontWeight='500' />
         </InputGroup>
-      </HStack>
+      </Stack>
       <HStack mt='.8rem' ml='.6rem'>
         <CheckboxGroup >
         <Checkbox mr='4rem' >Add a flight</Checkbox>
