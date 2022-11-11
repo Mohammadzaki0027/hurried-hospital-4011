@@ -54,6 +54,10 @@ const Rightsidebar = () => {
     console.log(data, "data");
   });
   const handelclick = (a, b) => {};
+
+  const handlesortprice=()=>{
+    
+  }
   return (
     <div className={style.rightsidecontainer}>
       <div className={style.textbox}>
@@ -158,6 +162,7 @@ const Rightsidebar = () => {
             _hover={"none"}
             color={"white"}
             className={style.filterbutton}
+            onClick={handlesortprice}
           >
             Price(low to high)
           </Button>
