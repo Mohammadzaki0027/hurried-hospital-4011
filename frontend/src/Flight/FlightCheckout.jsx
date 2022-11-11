@@ -58,8 +58,9 @@ export const FlightCheckout = (data) => {
         justifyContent="space-evenly"
         paddingBottom={"20px"}
       >
-        <Box width={["60%"]} padding="5px">
+        <Box   width={["90%","90%","90%","60%"]} padding="5px">
               <Box 
+              // border={"1px solid red"}
            boxShadow=" rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px"
            borderRadius={"5px"}
           display={["flex"]} padding="5px">
@@ -157,7 +158,7 @@ export const FlightCheckout = (data) => {
                 <Image margin={"auto"} width={["100%"]} src="https://tpc.googlesyndication.com/simgad/9701240269539084891?"></Image>
                </Box>
         </Box>
-        <Box            boxShadow=" rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px"
+        <Box   display={["none","none","none","block"]}    boxShadow=" rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px"
  width="30%" height={"max-content"} padding="15px" borderRadius={"5px"}>
               <Heading size={"md"}>Price summary</Heading>
               <Flex marginTop={"10px"} >
@@ -183,6 +184,19 @@ export const FlightCheckout = (data) => {
               <Text fontSize={"12px"}>Rates are quoted in Indian rupees</Text>
               <Button marginTop={"20px"} colorScheme={"blue"} w={"100%"}>Checkout</Button>
         </Box>
+      </Box>
+      <Box display={["flex","flex","flex","none"]}
+      boxShadow="rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px"
+      position="sticky" zIndex={"10"}  padding="10px" margin="auto"  alignItems="center" width={["80%","80%","80%"]} >
+          <Flex display>
+            <Text>Trip total</Text>
+            <Heading size={"lg"}>₹{alldata.price}</Heading>
+            <Text color={"blue"} fontSize="15px">view Price Summary</Text>
+          </Flex>
+          <Spacer/>
+          <Flex>
+            <Button colorScheme={"blue"}>Check Out</Button>
+          </Flex>
       </Box>
       <Box w={"90%"} margin="auto">
       <OurApp/>
