@@ -25,7 +25,7 @@ const FOneWay = () => {
                 </InputGroup>
             </HStack>
             <VStack mt="1.7rem">
-                <Button colorScheme='none' color="white" bg="#3763d8" w="12vw" h="12vh">Search</Button>
+                <Button colorScheme='none' color="white" _hover={{bg:"#2c4fac"}} bg="#3763d8" px="4rem" py="1.4rem">Search</Button>
             </VStack>
         </>
     )
