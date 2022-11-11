@@ -12,19 +12,21 @@ const Rightsidebar = () => {
   const [filterdata, setFilterdata] = React.useState([]);
   const [data, setData] = React.useState([]);
   function fetch() {
-    axios.get("http://localhost:8080/getcar").then((r) => {
-      if (selectrating.length > 0) {
-        let newarray = r.data.data;
+    if (data.length === 0) {
+      axios.get("http://localhost:8080/getcar").then((r) => {
+        if (selectrating.length > 0) {
+          let newarray = r.data.data;
 
-        let arr = newarray.sort(function (a, b) {
-          return parseFloat(b.rating) - parseFloat(a.rating);
-        })
+          let arr = newarray.sort(function (a, b) {
+            return parseFloat(b.rating) - parseFloat(a.rating);
+          });
 
-        setData(arr);
-      } else {
-        setData(r.data.data);
-      }
-    });
+          setData(arr);
+        } else {
+          setData(r.data.data);
+        }
+      });
+    }
   }
   const [SearchParams, setSearchParams] = useSearchParams();
   const [selectrating, setSelectrating] = React.useState(
@@ -41,6 +43,17 @@ const Rightsidebar = () => {
     setSelectrating(newtag);
     setSearchParams({ tag: newtag });
   };
+  let handlesortprice = () => {
+   
+      let arr = data?.sort((a, b) => {
+        return parseFloat(a.price) - parseFloat(b.price);
+      });
+  console.log(arr);
+      setData(arr);
+    
+   
+  };
+
 
   React.useEffect(() => {
     axios.get("http://localhost:8080/getfilter").then((r) => {
@@ -50,14 +63,15 @@ const Rightsidebar = () => {
   React.useEffect(() => {
     fetch();
   }, [selectrating]);
-  React.useEffect(() => {
-    console.log(data, "data");
-  });
+  React.useEffect(() => {}, []);
   const handelclick = (a, b) => {};
 
-  const handlesortprice=()=>{
-    
-  }
+  React.useEffect(()=>{
+
+
+
+  },[])
+
   return (
     <div className={style.rightsidecontainer}>
       <div className={style.textbox}>
