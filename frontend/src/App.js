@@ -9,9 +9,14 @@ function App() {
   return (
     <div className="App">
 
-       <AllRoutes />
-      {/* <Flight/>  */}
-     {/* <FlightCheckout/> */}
+
+ 
+   <AllRoutes/>
+
+
+  
+
+
     </div>
   );
 }
