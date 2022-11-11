@@ -7,20 +7,30 @@ import { Button } from "@chakra-ui/react";
 import axios from "axios";
 import Infodiv from "./Infodiv";
 import Pricediv from "./Pricediv";
-import {   useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 const Rightsidebar = () => {
   const [filterdata, setFilterdata] = React.useState([]);
   const [data, setData] = React.useState([]);
   function fetch() {
     axios.get("http://localhost:8080/getcar").then((r) => {
-      setData(r.data.data);
+      if (selectrating.length > 0) {
+        let newarray = r.data.data;
+
+        let arr = newarray.sort(function (a, b) {
+          return parseFloat(b.rating) - parseFloat(a.rating);
+        })
+
+        setData(arr);
+      } else {
+        setData(r.data.data);
+      }
     });
   }
   const [SearchParams, setSearchParams] = useSearchParams();
   const [selectrating, setSelectrating] = React.useState(
     SearchParams.getAll("tag") || []
   );
- 
+
   const handelrating = (tag) => {
     let newtag = [...selectrating];
     if (newtag.includes(tag)) {
@@ -33,15 +43,16 @@ const Rightsidebar = () => {
   };
 
   React.useEffect(() => {
-    
     axios.get("http://localhost:8080/getfilter").then((r) => {
       setFilterdata(r.data.data);
     });
-    
-  }, []);
+  }, [selectrating]);
   React.useEffect(() => {
-     fetch();
-  }, []);
+    fetch();
+  }, [selectrating]);
+  React.useEffect(() => {
+    console.log(data, "data");
+  });
   const handelclick = (a, b) => {};
   return (
     <div className={style.rightsidecontainer}>
@@ -136,7 +147,7 @@ const Rightsidebar = () => {
             _hover={"none"}
             color={"white"}
             className={style.filterbutton}
-            onClick={()=>handelrating("rating")}
+            onClick={() => handelrating("rating")}
           >
             Sort By Rating
           </Button>
