@@ -9,6 +9,8 @@ import {
 
 import { BiAbacus } from "react-icons/bi";
 const Sidebar = () => {
+  const [filtercheckbox, setFiltercheckbox] = React.useState([]);
+
   return (
     <div className={style.container}>
       <div className={style.summ}>
@@ -204,7 +206,6 @@ const Sidebar = () => {
                 borderRadius={"2px"}
                 marginTop={"5px"}
                 ml={"15px"}
-            
               ></Checkbox>
             </div>
             <div>
@@ -227,6 +228,7 @@ const Sidebar = () => {
                 borderRadius={"2px"}
                 marginTop={"5px"}
                 marginLeft={"-22px"}
+                value={"Petrol"}
               ></Checkbox>
             </div>
             <div>
@@ -235,7 +237,6 @@ const Sidebar = () => {
                   fontSize: "18px",
                   fontFamily: "bold",
                   color: "grey",
-               
                 }}
               >
                 Petrol

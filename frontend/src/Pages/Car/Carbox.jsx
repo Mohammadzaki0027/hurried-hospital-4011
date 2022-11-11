@@ -7,7 +7,7 @@ const Carbox = ({seat,image,vehtype,price,handelclick}) => {
 
   return (
     <div className={style.corboxcon} onClick={()=>{
-      handelclick(seat,vehtype)
+      handelclick(vehtype)
     }}>
       <div className={style.text1}>
         <h1>{vehtype}</h1>

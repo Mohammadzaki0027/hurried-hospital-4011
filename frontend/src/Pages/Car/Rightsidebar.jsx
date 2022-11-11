@@ -43,16 +43,13 @@ const Rightsidebar = () => {
     setSelectrating(newtag);
     setSearchParams({ tag: newtag });
   };
-  let handlesortprice = () => {
-   
-      let arr = data?.sort((a, b) => {
-        return parseFloat(a.price) - parseFloat(b.price);
-      });
-  console.log(arr);
-      setData(arr);
+  let handlesortprice = (value) => {
+    console.log(value);
+    axios.get(`http://localhost:8080/filterdata/${value}`).then((r)=>{
     
-   
-  };
+     setData(r.data.data)
+    })
+    };
 
 
   React.useEffect(() => {
@@ -64,7 +61,10 @@ const Rightsidebar = () => {
     fetch();
   }, [selectrating]);
   React.useEffect(() => {}, []);
-  const handelclick = (a, b) => {};
+  // const handelclick = (a, b) => {
+
+  //   console.log(a,b);
+  // };
 
   React.useEffect(()=>{
 
@@ -141,7 +141,7 @@ const Rightsidebar = () => {
 
       <div className={style.carbox}>
         {filterdata?.map((e) => (
-          <Carbox {...e} handelclick={handelclick} key={e._id} />
+          <Carbox {...e} handelclick={handlesortprice} key={e._id} />
         ))}
       </div>
 
@@ -155,6 +155,7 @@ const Rightsidebar = () => {
             _hover={"none"}
             color={"white"}
             className={style.filterbutton}
+            onClick={()=>handlesortprice("Economy")}
           >
             Recommended
           </Button>
@@ -165,7 +166,7 @@ const Rightsidebar = () => {
             _hover={"none"}
             color={"white"}
             className={style.filterbutton}
-            onClick={() => handelrating("rating")}
+            onClick={() => handlesortprice("rating")}
           >
             Sort By Rating
           </Button>
@@ -176,7 +177,12 @@ const Rightsidebar = () => {
             _hover={"none"}
             color={"white"}
             className={style.filterbutton}
-            onClick={handlesortprice}
+            onClick={()=>
+            
+              handlesortprice("price")
+            
+            
+            }
           >
             Price(low to high)
           </Button>
@@ -184,7 +190,7 @@ const Rightsidebar = () => {
       </div>
       {data?.map((e) => (
         <div className={style.maindiv} key={e._id}>
-          <Carbox {...e} />
+          <Carbox {...e} handlesortprice={handlesortprice}/>
           <Infodiv />
           <Pricediv price={e.price} />
         </div>
