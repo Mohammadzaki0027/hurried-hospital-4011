@@ -132,17 +132,17 @@ const Rightsidebar = () => {
         </div>
       </div>
       {/* box ending */}
-  {/* model filter */}
-  <div className={style.Filtercontainer}>
-        <Filter />
-      </div>
-{/* model end for check */}
+ 
       <div className={style.carbox}>
         {filterdata?.map((e) => (
-          <Carbox {...e} handelclick={handlesortprice} key={e._id} />
+          <Carbox {...e} handlesortprice={handlesortprice} key={e._id} />
         ))}
       </div>
-
+ {/* model filter */}
+ <div className={style.Filtercontainer}>
+        <Filter handlesortprice={handlesortprice}/>
+      </div>
+{/* model end for check */}
       <div className={style.fitercontainer}>
         <div>
           <h1 style={{ marginTop: "10px" }}>Sort By</h1>

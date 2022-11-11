@@ -13,11 +13,11 @@ import {
   FormLabel,
   Input,
 } from "@chakra-ui/react";
-const Filter = () => {
+const Filter = ({handlesortprice}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <div>
-      <Button onClick={onOpen}>Sorting</Button>
+      <Button onClick={onOpen}  bg={"#00355d"} _hover={"none"} color={"white"}>Sorting</Button>
 
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
@@ -26,13 +26,13 @@ const Filter = () => {
           <ModalCloseButton />
           <ModalBody>
             <FormControl>
-              <Button bg={"#00355d"} _hover={"none"} color={"white"}>
+              <Button bg={"#00355d"} _hover={"none"} color={"white"} onClick={()=>handlesortprice("price")}>
                 Price (Low to High)
               </Button>
             </FormControl>
 
             <FormControl>
-              <Button bg={"#00355d"} _hover={"none"} color={"white"}>
+              <Button bg={"#00355d"} _hover={"none"} color={"white"} onClick={()=>handlesortprice("rating")}>
                 Rating
               </Button>
             </FormControl>
