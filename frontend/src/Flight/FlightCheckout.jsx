@@ -182,7 +182,7 @@ export const FlightCheckout = (data) => {
                 <Text  fontWeight={"semibold"} fontSize="20px">₹{alldata.price}.00</Text>
               </Flex>
               <Text fontSize={"12px"}>Rates are quoted in Indian rupees</Text>
-              <Button marginTop={"20px"} colorScheme={"blue"} w={"100%"}>Checkout</Button>
+              <Link to={"/flightpayment"}>  <Button marginTop={"20px"} colorScheme={"blue"} w={"100%"}>Checkout</Button></Link>
         </Box>
       </Box>
       <Box display={["flex","flex","flex","none"]}
@@ -195,7 +195,9 @@ export const FlightCheckout = (data) => {
           </Flex>
           <Spacer/>
           <Flex>
-            <Button colorScheme={"blue"}>Check Out</Button>
+            <Link to={"/flightpayment"}>
+            <Button  colorScheme={"blue"}>Check Out</Button>
+            </Link>
           </Flex>
       </Box>
       <Box w={"90%"} margin="auto">

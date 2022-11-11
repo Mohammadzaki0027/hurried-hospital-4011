@@ -18,6 +18,7 @@ import {Signup}  from './Signup'
 
 
 import Homepage from './Homepage';
+import { FlightPayment } from '../Flight/FlightPayment';
 
 
 
@@ -38,7 +39,7 @@ const AllRoutes = () => {
 
         <Route path='/flight' element={<Flight/>}/>
         <Route path="/flightcheckout" element={<FlightCheckout/>} />
-
+        <Route path='/flightpayment' element={<FlightPayment/>}/>
 
 
 
