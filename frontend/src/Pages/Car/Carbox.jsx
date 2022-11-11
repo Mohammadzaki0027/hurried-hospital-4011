@@ -38,7 +38,7 @@ const Carbox = ({seat,image,vehtype,price,handelclick}) => {
         />
       </div>
       <div className={style.price}>
-        <h1>`From Rs {price}`</h1>
+        <h1>From Rs {price}</h1>
       </div>
     </div>
   );

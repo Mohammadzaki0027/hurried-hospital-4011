@@ -1,8 +1,19 @@
 import React from 'react'
 
+
+
+import Car from '../Pages/Car/Car';
+
+
+
+import Flight from '../Flight/Flight';
+import { FlightCheckout } from '../Flight/FlightCheckout';
+
 import { Route, Routes } from 'react-router-dom'
 import Login from './Login'
 import {Signup}  from './Signup'
+
+
 
 
 
@@ -21,6 +32,14 @@ const AllRoutes = () => {
 
 
         <Route path="/" element={<Homepage/>}/>
+
+        <Route path="/car" element={<Car/>}/>
+
+
+        <Route path='/flight' element={<Flight/>}/>
+        <Route path="/flightcheckout" element={<FlightCheckout/>} />
+
+
 
 
     </Routes>
