@@ -11,13 +11,15 @@ import { useSearchParams } from "react-router-dom";
 import Filter from "./Filter";
 const Rightsidebar = () => {
   const [filterdata, setFilterdata] = React.useState([]);
+  const [SearchParams, setSearchParams] = useSearchParams();
+  const [selectrating, setSelectrating] = React.useState(
+    SearchParams.getAll("tag") || [] );
   const [data, setData] = React.useState([]);
   function fetch() {
     if (data.length === 0) {
       axios.get("http://localhost:8080/getcar").then((r) => {
         if (selectrating.length > 0) {
           let newarray = r.data.data;
-
           let arr = newarray.sort(function (a, b) {
             return parseFloat(b.rating) - parseFloat(a.rating);
           });
@@ -29,29 +31,11 @@ const Rightsidebar = () => {
       });
     }
   }
-  const [SearchParams, setSearchParams] = useSearchParams();
-  const [selectrating, setSelectrating] = React.useState(
-    SearchParams.getAll("tag") || []
-  );
-
-  const handelrating = (tag) => {
-    let newtag = [...selectrating];
-    if (newtag.includes(tag)) {
-      newtag.splice(newtag.indexOf(tag), 1);
-    } else {
-      newtag.push(tag);
-    }
-    setSelectrating(newtag);
-    setSearchParams({ tag: newtag });
-  };
   let handlesortprice = (value) => {
-    console.log(value);
-    axios.get(`http://localhost:8080/filterdata/${value}`).then((r)=>{
-    
-     setData(r.data.data)
-    })
-    };
-
+    axios.get(`http://localhost:8080/filterdata/${value}`).then((r) => {
+      setData(r.data.data);
+    });
+  };
 
   React.useEffect(() => {
     axios.get("http://localhost:8080/getfilter").then((r) => {
@@ -61,10 +45,19 @@ const Rightsidebar = () => {
   React.useEffect(() => {
     fetch();
   }, [selectrating]);
- 
 
-
-
+  const handelcart = (price, id, image) => {
+    console.log(price, id, image);
+    let localdata = localStorage.getItem("cartitem");
+    if (localdata === null) {
+      let data = { price: price, id, image };
+      localStorage.setItem("cartitem", JSON.stringify(data));
+    } else {
+      localStorage.clear();
+      let data = { price, id, image };
+      localStorage.setItem("cartitem", JSON.stringify(data));
+    }
+  };
 
   return (
     <div className={style.rightsidecontainer}>
@@ -132,17 +125,17 @@ const Rightsidebar = () => {
         </div>
       </div>
       {/* box ending */}
- 
+
       <div className={style.carbox}>
         {filterdata?.map((e) => (
           <Carbox {...e} handlesortprice={handlesortprice} key={e._id} />
         ))}
       </div>
- {/* model filter */}
- <div className={style.Filtercontainer}>
-        <Filter handlesortprice={handlesortprice}/>
+      {/* model filter */}
+      <div className={style.Filtercontainer}>
+        <Filter handlesortprice={handlesortprice} />
       </div>
-{/* model end for check */}
+      {/* model end for check */}
       <div className={style.fitercontainer}>
         <div>
           <h1 style={{ marginTop: "10px" }}>Sort By</h1>
@@ -153,7 +146,7 @@ const Rightsidebar = () => {
             _hover={"none"}
             color={"white"}
             className={style.filterbutton}
-            onClick={()=>handlesortprice("Economy")}
+            onClick={() => handlesortprice("Economy")}
           >
             Recommended
           </Button>
@@ -175,25 +168,18 @@ const Rightsidebar = () => {
             _hover={"none"}
             color={"white"}
             className={style.filterbutton}
-            onClick={()=>
-            
-              handlesortprice("price")
-            
-            
-            }
+            onClick={() => handlesortprice("price")}
           >
             Price(low to high)
           </Button>
         </div>
       </div>
 
-    
-
       {data?.map((e) => (
         <div className={style.maindiv} key={e._id}>
-          <Carbox {...e} handlesortprice={handlesortprice}/>
+          <Carbox {...e} handlesortprice={handlesortprice} />
           <Infodiv />
-          <Pricediv price={e.price} />
+          <Pricediv {...e} handelcart={handelcart} />
         </div>
       ))}
     </div>

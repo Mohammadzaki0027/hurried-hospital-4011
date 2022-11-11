@@ -16,9 +16,15 @@ const Sidebar = () => {
   const [des, setDes] = React.useState("");
   const [final, setFinal] = React.useState("");
   const handelcity = (a, b) => {
-    setDes(a);
-    setFinal(b);
+    localStorage.setItem("tourdata", JSON.stringify({ city1: a, city2: b }));
+    let data = localStorage.getItem("tourdata");
+    data = JSON.parse(data);
+    setDes(data.city1);
+    setFinal(data.city2);
   };
+
+  React.useEffect(() => {}, [des, final]);
+
   return (
     <div className={style.container}>
       <div className={style.summ}>

@@ -10,6 +10,7 @@ import Login from "./Login";
 import { Signup } from "./Signup";
 
 import Homepage from "./Homepage";
+import Checkout from "../Pages/Car/Checkout";
 
 const AllRoutes = () => {
   return (
@@ -23,6 +24,7 @@ const AllRoutes = () => {
 
       <Route path="/flight" element={<Flight />} />
       <Route path="/flightcheckout" element={<FlightCheckout />} />
+      <Route path="/carcheckout" element={<Checkout />} />
     </Routes>
   );
 };
