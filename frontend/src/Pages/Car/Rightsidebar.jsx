@@ -8,6 +8,7 @@ import axios from "axios";
 import Infodiv from "./Infodiv";
 import Pricediv from "./Pricediv";
 import { useSearchParams } from "react-router-dom";
+import Filter from "./Filter";
 const Rightsidebar = () => {
   const [filterdata, setFilterdata] = React.useState([]);
   const [data, setData] = React.useState([]);
@@ -60,17 +61,10 @@ const Rightsidebar = () => {
   React.useEffect(() => {
     fetch();
   }, [selectrating]);
-  React.useEffect(() => {}, []);
-  // const handelclick = (a, b) => {
-
-  //   console.log(a,b);
-  // };
-
-  React.useEffect(()=>{
+ 
 
 
 
-  },[])
 
   return (
     <div className={style.rightsidecontainer}>
@@ -138,7 +132,11 @@ const Rightsidebar = () => {
         </div>
       </div>
       {/* box ending */}
-
+  {/* model filter */}
+  <div className={style.Filtercontainer}>
+        <Filter />
+      </div>
+{/* model end for check */}
       <div className={style.carbox}>
         {filterdata?.map((e) => (
           <Carbox {...e} handelclick={handlesortprice} key={e._id} />
@@ -188,6 +186,9 @@ const Rightsidebar = () => {
           </Button>
         </div>
       </div>
+
+    
+
       {data?.map((e) => (
         <div className={style.maindiv} key={e._id}>
           <Carbox {...e} handlesortprice={handlesortprice}/>

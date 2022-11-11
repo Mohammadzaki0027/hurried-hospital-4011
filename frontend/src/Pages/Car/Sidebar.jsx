@@ -1,6 +1,6 @@
 import React from "react";
 import style from "../../Styles/car/sidebar.module.css";
-import { Button, Checkbox } from "@chakra-ui/react";
+import { Button, Checkbox, useDisclosure } from "@chakra-ui/react";
 import {
   AiOutlineEnvironment,
   AiTwotoneTag,
@@ -8,9 +8,17 @@ import {
 } from "react-icons/ai";
 
 import { BiAbacus } from "react-icons/bi";
+import ModalComp from "./ModalComp";
+import Createtour from "./Createtour";
 const Sidebar = () => {
   const [filtercheckbox, setFiltercheckbox] = React.useState([]);
-
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [des, setDes] = React.useState("");
+  const [final, setFinal] = React.useState("");
+  const handelcity = (a, b) => {
+    setDes(a);
+    setFinal(b);
+  };
   return (
     <div className={style.container}>
       <div className={style.summ}>
@@ -35,7 +43,7 @@ const Sidebar = () => {
               </h2>
             </div>
           </div>
-          <div>mumbai to thane</div>
+          <div> {final}</div>
           <div className={style.pickup}>
             <div>date</div>
             <div>time</div>
@@ -60,7 +68,7 @@ const Sidebar = () => {
             </div>
           </div>
 
-          <div>Nashik</div>
+          <div>{des}</div>
           <div className={style.pickup}>
             <div>date</div>
             <div>time</div>
@@ -70,9 +78,15 @@ const Sidebar = () => {
             color={"white"}
             textAlign="end"
             _hover={"none"}
+            onClick={onOpen}
           >
             Edit
           </Button>
+          <Createtour
+            isOpen={isOpen}
+            onClose={onClose}
+            handelcity={handelcity}
+          />
         </div>
       </div>
 

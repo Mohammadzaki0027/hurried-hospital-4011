@@ -17,22 +17,24 @@ const Filter = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <div>
-      <Button onClick={onOpen}>Enter the Details for BMI</Button>
+      <Button onClick={onOpen}>Sorting</Button>
 
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>BMI Value Calculator</ModalHeader>
+          <ModalHeader>Sorting</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormControl>
-              <FormLabel>Enter Height in Feet</FormLabel>
-              <Input type="number" placeholder="Enter Height in Feet" />
+              <Button bg={"#00355d"} _hover={"none"} color={"white"}>
+                Price (Low to High)
+              </Button>
             </FormControl>
 
             <FormControl>
-              <FormLabel>Enter weight in kg</FormLabel>
-              <Input type="number" placeholder="Enter weight in kg" />
+              <Button bg={"#00355d"} _hover={"none"} color={"white"}>
+                Rating
+              </Button>
             </FormControl>
           </ModalBody>
           <ModalFooter>
