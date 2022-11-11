@@ -6,9 +6,13 @@ const { FlightModule } = require("./Model/flight.module")
 const { carRouter } = require("./Routes/Carfilter.route")
 
 const app=express()
+
 let cors = require('cors')
 const { CarCartRoute } = require("./Routes/CarCart.route")
 app.use(cors())
+
+
+
 require("dotenv").config()
 const PORT=process.env.PORT||8000
 app.use(express.json())

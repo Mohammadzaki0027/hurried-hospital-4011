@@ -9,9 +9,9 @@ const Navbar = () => {
   return (
     <Box borderBottom="1px solid #c5c7ce" mb="2rem">
       <Box m="auto" w="76%" display="flex" py=".8rem" >
-        <Box display="flex" justifyContent={"space-between"}>
+        <Box display="flex" w="100%" justifyContent={"space-between"}>
           <Box display="flex">
-            <Image w="20%" src={Logo} />
+            <Image w="26%" src={Logo} />
             <Box>
               <DropDown />
             </Box>
