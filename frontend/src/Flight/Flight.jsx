@@ -60,10 +60,14 @@ import { HiOutlineArrowsRightLeft } from "react-icons/hi2";
 import { useState } from "react";
 import { FlightCheckout } from "./FlightCheckout";
 import { Link } from "react-router-dom";
+import OurApp from "../components/homepage/OurApp";
+import Footer from "../components/Footer";
+import { getData } from "../Redux/FlightCheckout/action";
 function Flight() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.Flightreducer.flight);
   // const { isOpen, onOpen, onClose } = useDisclosure();
+  
   const isTrue=false
   const { 
     isOpen: isOpenModal, 
@@ -85,18 +89,20 @@ const {
   var day= today.getDay()
   var month = today.toLocaleString('default', { month: 'short' });
   const weekday=today.toLocaleString("default",{weekday:"short"})
-// console.log(month,day,weekday)
-
+  const [val,setValue]=useState("asc")
+  console.log(val);
   useEffect(() => {
-    dispatch(flightData()).then((res) => {
+    dispatch(flightData(val)).then((res) => {
       // console.log(res);
       // console.log(data);
     });
-  }, [dispatch]);
+  }, [dispatch,val]);
   const handleData=(item)=>{
     // console.log(item)
        onOpenModal1()
        setSingle(item)
+       dispatch(getData(item))
+       
   }
   return (
     <>
@@ -180,7 +186,7 @@ const {
           </Button>
         </VStack>
       </HStack>
-      <Box display={"flex"} bgColor="#F8F5F4" gap={"20px"}>
+      <Box display={"flex"} bgColor="#F8F5F4" gap={"20px"} paddingBottom="20px">
         {/* sidebar flter box */}
         <Box
           w="25%"
@@ -371,11 +377,12 @@ const {
                 borderRadius: "5px",
                 padding: "10px 5px 10px 5px",
               }}
+              onChange={(e)=>setValue(e.target.value)}
             >
-              <option value="">Price (Lowest)</option>
-              <option value="">Price(Highest)</option>
-              <option value="">Duration(Shortest)</option>
-              <option value="">Duration(Longest)</option>
+              <option value="asc">Price (Lowest)</option>
+              <option value="desc">Price(Highest)</option>
+              <option value="min">Duration(Shortest)</option>
+              <option value="max">Duration(Longest)</option>
             </Select>
             <Box
           w="100%"
@@ -557,7 +564,7 @@ const {
               Prices are not final until you complete your purchase.
             </p>
             <Select
-              width={"20%"}
+              width={"23%"}
               display={["none", "none", "none", "block"]}
               id="cars"
               style={{
@@ -565,11 +572,12 @@ const {
                 borderRadius: "5px",
                 padding: "10px 5px 10px 5px",
               }}
+              onChange={(e)=>setValue(e.target.value)}
             >
-              <option value="">Price (Lowest)</option>
-              <option value="">Price(Highest)</option>
-              <option value="">Duration(Shortest)</option>
-              <option value="">Duration(Longest)</option>
+              <option value="asc">Price (Lowest)</option>
+              <option value="desc">Price(Highest)</option>
+              <option value="min">Duration(Shortest)</option>
+              <option value="max">Duration(Longest)</option>
             </Select>
           
           </Box>
@@ -704,6 +712,10 @@ const {
           />
         </Box>
       </Box>
+      <Box w={"90%"} margin="auto">
+      <OurApp/>
+      </Box>
+      <Footer/>
       <div style={{display:"none"}}>
         <FlightCheckout data={single} />
       </div>

@@ -24,8 +24,29 @@ app.use("/",CarCartRoute)
 app.use("/user",userController)
 
 app.get("/flight",async (req,res)=>{
-    const result= await FlightModule.find()
-    res.send(result)
+  
+    if (req.query.sort=="asc"){
+        const result= await FlightModule.find().sort({price:1})
+        res.send(result)
+    }
+    else if(req.query.sort=="desc"){
+        const result= await FlightModule.find().sort({price:-1})
+        res.send(result)
+    }
+    else if(req.query.sort=="min"){
+        const result= await FlightModule.find().sort({stoptime:1})
+        res.send(result)
+    }
+    else if(req.query.sort=="max"){
+        const result= await FlightModule.find().sort({stoptime:-1})
+        res.send(result)
+    }
+    else{
+        const result= await FlightModule.find()
+        res.send(result)
+
+    }
+   
 })
 
 app.use("/",carRouter)
