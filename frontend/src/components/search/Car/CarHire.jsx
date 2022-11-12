@@ -1,6 +1,5 @@
-import { Box, Button, HStack, Input, InputGroup, InputLeftElement, Stack, TagLabel, VStack } from '@chakra-ui/react'
+import { Box, Button, Input, InputGroup, InputLeftElement, Stack, TagLabel, VStack } from '@chakra-ui/react'
 import { IoLocationSharp } from 'react-icons/io5'
-import { HiBuildingOffice2 } from 'react-icons/hi2'
 import React from 'react'
 
 const CarHire = () => {
@@ -23,7 +22,8 @@ const CarHire = () => {
             <Input type='text' placeholder='Same as pick-up' />
           </InputGroup>
         </Box>
-        <Box display="flex" gap={4}>
+        {/* <Stack direction={['column','column','row','row']}> */}
+        <Box display={['block','block','flex','flex']} gap={4}>
           <InputGroup gap={2}>
             <Input type='date' />
             <Input type='time' aria-label='Time' placeholder="Time" />
@@ -33,6 +33,7 @@ const CarHire = () => {
             <Input type='time' aria-label='Time' placeholder="Time" />
           </InputGroup>
         </Box>
+        {/* </Stack> */}
 
       </Stack>
       <VStack mt="1.7rem">

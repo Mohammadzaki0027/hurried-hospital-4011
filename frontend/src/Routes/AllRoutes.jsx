@@ -14,14 +14,20 @@ import { FlightCheckout } from "../Flight/FlightCheckout";
 
 import { Route, Routes } from 'react-router-dom'
 import Login from './Login'
-import {Signup}  from './Signup'
+import { Signup } from './Signup'
 
 
 
 
 
 import Homepage from './Homepage';
+
+import StayPage from './StayPage';
+import FlightPage from './FlightPage';
+import CarPage from './CarPage';
+
 import { FlightPayment } from '../Flight/FlightPayment';
+
 
 
 
@@ -32,6 +38,7 @@ const AllRoutes = () => {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+
 
 
     <Route path='/login' element={<Login/>} />
@@ -48,6 +55,7 @@ const AllRoutes = () => {
         <Route path='/flight' element={<Flight/>}/>
         <Route path="/flightcheckout" element={<FlightCheckout/>} />
         <Route path='/flightpayment' element={<FlightPayment/>}/>
+
 
       <Route path="/" element={<Homepage />} />
 

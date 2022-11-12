@@ -1,4 +1,4 @@
-import { Button, HStack, Input, InputGroup, InputLeftElement, TagLabel, VStack } from '@chakra-ui/react'
+import { Button, Input, InputGroup, InputLeftElement, Stack, VStack } from '@chakra-ui/react'
 import { IoLocationSharp } from 'react-icons/io5'
 import { HiBuildingOffice2 } from 'react-icons/hi2'
 import React from 'react'
@@ -6,7 +6,7 @@ import React from 'react'
 const AirportTransport = () => {
     return (
         <>
-            <HStack mt=".7rem">
+            <Stack direction={['column','column','row','row']} mt=".7rem">
                 <InputGroup>
                     <InputLeftElement
                         pointerEvents='none'
@@ -27,7 +27,7 @@ const AirportTransport = () => {
                 <InputGroup>
                     <Input type='time' aria-label='Time' placeholder="Time" />
                 </InputGroup>
-            </HStack>
+            </Stack>
             <VStack mt="1.7rem">
                 <Button colorScheme='none' color="white" _hover={{ bg: "#2c4fac" }} bg="#3763d8" px="4rem" py="1.4rem">Search</Button>
             </VStack>

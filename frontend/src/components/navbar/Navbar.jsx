@@ -1,22 +1,23 @@
 import { Box, Button, Image } from '@chakra-ui/react';
 import Logo from '../../Images/Logo.png'
-import DropDown from './DropDown';
+import DropDown, { SmDropDown } from './DropDown';
 import { GrLanguage } from 'react-icons/gr'
+import {IoMdBriefcase} from 'react-icons/io'
 import { BsFillBellFill } from 'react-icons/bs'
-import SignInDropDown from './SignInDropDown';
+import SignInDropDown, { SmSignInDropDown } from './SignInDropDown';
 
 const Navbar = () => {
   return (
     <Box borderBottom="1px solid #c5c7ce" mb="2rem">
-      <Box m="auto" w="76%" display="flex" py=".8rem" >
+      <Box m="auto" w={["100%","100%","100%","76%"]} display="flex" py=".8rem" >
         <Box display="flex" w="100%" justifyContent={"space-between"}>
           <Box display="flex">
-            <Image w="26%" src={Logo} />
-            <Box>
+            <Image w={["75%","55%","26%","26%"]} src={Logo} />
+            <Box display={['none','none','block','block']}>
               <DropDown />
             </Box>
           </Box>
-          <Box display={"flex"}>
+          <Box display={['none','none','flex',"flex"]}>
             <Button leftIcon={<GrLanguage />} colorScheme='none' color="black" _hover={{ color: "#3763d8" }}>
               Settings
             </Button>
@@ -29,10 +30,17 @@ const Navbar = () => {
             <Button colorScheme='none' color="black" _hover={{ color: "#3763d8" }}>
               <BsFillBellFill />
             </Button>
-            {/* <Button colorScheme='none' color="black" _hover={{ color: "#3763d8" }}>
-              Sign in
-            </Button> */}
             <SignInDropDown />
+          </Box>
+
+          <Box display={['flex',"flex",'none','none']}>
+            <Button colorScheme='none' mr='-1rem' color="black" /*_hover={{ color: "#3763d8" }}*/ >
+              <SmDropDown />
+            </Button>
+            <Button colorScheme='none' color="black" /*_hover={{ color: "#3763d8" }}*/>
+              <IoMdBriefcase />
+            </Button>
+            <SmSignInDropDown />
           </Box>
         </Box>
       </Box>
