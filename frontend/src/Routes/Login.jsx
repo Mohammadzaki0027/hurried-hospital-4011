@@ -3,7 +3,7 @@ import styled from "styled-components";
 import FullWidthTextField from "../components/Input";
 
 import { Link, Navigate } from "react-router-dom";
- 
+
 import axios from "axios";
 import { Box, Button, Checkbox, Heading, Input } from "@chakra-ui/react";
 // import { StaysInputContext } from "../../Contexts/StaysInputContext";
@@ -82,7 +82,7 @@ const MainDiv = styled.div`
   }
 `;
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
- const Login = () => {
+const Login = () => {
   // const [user, setUser] = useState({ email: "", password: "" });
 
   // const {auth,handleAuth} = useContext(StaysInputContext) 
@@ -99,7 +99,7 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
         <Heading mr="250px" mb="20px">Sign in</Heading>
         <Box>or</Box>
         <FullWidthTextField
-        
+
           text={"Email address"}
           // handle={inputHandler}
           name={"email"}
@@ -112,15 +112,15 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
       </Box>
 
       <div className="checkbox">
-        
+
         <Checkbox size={"md"} defaultChecked>Keep me signed in</Checkbox>
 
-       
+
         {/* <Checkbox {...label} defaultChecked /> */}
         {/* <label htmlFor="">This is a public or shared device</label> */}
       </div>
       <Box className="term checkboxCondition">
-      Selecting this checkbox will keep you signed into your account on this device until you sign out. Do not select this on shared devices.
+        Selecting this checkbox will keep you signed into your account on this device until you sign out. Do not select this on shared devices.
       </Box>
       <Box className="term">
         By signing in, I agree to the Expedia{" "}
@@ -139,16 +139,16 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
       </Box>
       <Box>
         <Button
-          // onClick={() => {
-          //   axios
-          //     .post(`http://188.166.98.109:5000/login`, user)
-          //     .then((data) => alert("you logged in")).then(data=>handleAuth(true))
-          // }}
+        // onClick={() => {
+        //   axios
+        //     .post(`http://188.166.98.109:5000/login`, user)
+        //     .then((data) => alert("you logged in")).then(data=>handleAuth(true))
+        // }}
         >
           Sign in
         </Button>
       </Box>
-  
+
       <Link>Forgot password?</Link>
 
       <p>
@@ -159,12 +159,12 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
       </p>
 
       <p>Other ways to sign in</p>
-     
-        {/* <Link to="http://188.166.98.109:5000/auth/google"> */}
-           {/* <GoogleIcon sx={{ color: "blue" }} 
+
+      {/* <Link to="http://188.166.98.109:5000/auth/google"> */}
+      {/* <GoogleIcon sx={{ color: "blue" }} 
                   
                   /> */}
-                  {/* </Link> */}
+      {/* </Link> */}
       {/* {auth ? <Navigate to={'/'} />:""} */}
     </MainDiv>
   );

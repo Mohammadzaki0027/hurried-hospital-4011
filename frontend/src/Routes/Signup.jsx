@@ -92,7 +92,7 @@ export const Signup = () => {
     surname: "",
   });
 
-  const [create,setCreate] = useState(false);
+  const [create, setCreate] = useState(false);
   const inputHandler = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
@@ -127,25 +127,25 @@ export const Signup = () => {
         {/* <Checkbox {...label} defaultChecked /> */}
         {/* <label htmlFor="">This is a public or shared device</label> */}
 
-       
-        
+
+
         <Checkbox size={"md"} defaultChecked>Keep me signed in</Checkbox>
 
-       
-        
+
+
         <Box className="term checkboxCondition">
-      Selecting this checkbox will keep you signed into your account on this device until you sign out. Do not select this on shared devices.
-      </Box>
+          Selecting this checkbox will keep you signed into your account on this device until you sign out. Do not select this on shared devices.
+        </Box>
 
 
 
-      <Box>
+        <Box>
 
-      <Checkbox size={"md"} defaultChecked>I'd like to receive travel deals,
-       special offers and other information from Expedia via email.</Checkbox>
+          <Checkbox size={"md"} defaultChecked>I'd like to receive travel deals,
+            special offers and other information from Expedia via email.</Checkbox>
 
 
-      </Box>
+        </Box>
 
       </Box>
 
@@ -173,7 +173,7 @@ export const Signup = () => {
           onClick={() => {
             axios
               .post(`http://188.166.98.109:5000/register`, user)
-              .then((data) => alert("you account created")).then(data=>setCreate(true))
+              .then((data) => alert("you account created")).then(data => setCreate(true))
           }}
         >
           Continue
@@ -187,14 +187,14 @@ export const Signup = () => {
       </p>
 
       <p>Other ways to sign up</p>
-    
+
       {/* <Link to="http://188.166.98.109:5000/auth/google"> <GoogleIcon sx={{ color: "blue" }}  */}
-                  
-                  {/* /></Link> */}
+
+      {/* /></Link> */}
 
       {/* {create ? <Navigate to={'/login'}  />:""} */}
 
-{/* <Box style={{display:"flex"}}> */}
+      {/* <Box style={{display:"flex"}}> */}
       <Link><i class="fa-brands fa-apple"></i></Link>
       <Link><i class="fa-brands fa-facebook"></i></Link>
       {/* </Box> */}
