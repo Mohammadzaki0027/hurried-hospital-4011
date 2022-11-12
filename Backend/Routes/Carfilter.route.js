@@ -5,15 +5,14 @@ const carRouter = Router();
 carRouter.get("/getfilter", async (req, res) => {
   const data = await CarfilterModel.find();
 
-  res.send({msg:"data",data});
+  res.send({ msg: "data", data });
 });
 
 carRouter.post("/filterdata", async (req, res) => {
-  const {seat,image,vehtype,price} = req.body;
+  const { seat, image, vehtype, price } = req.body;
 
   try {
-    await CarfilterModel.insertMany([{ seat,image,vehtype,price }]);
-
+    await CarfilterModel.insertMany([{ seat, image, vehtype, price }]);
   } catch (error) {
     console.log(error);
   }

@@ -8,38 +8,33 @@ import axios from "axios";
 import Infodiv from "./Infodiv";
 import Pricediv from "./Pricediv";
 import { useSearchParams } from "react-router-dom";
+import Filter from "./Filter";
 const Rightsidebar = () => {
   const [filterdata, setFilterdata] = React.useState([]);
-  const [data, setData] = React.useState([]);
-  function fetch() {
-    axios.get("http://localhost:8080/getcar").then((r) => {
-      if (selectrating.length > 0) {
-        let newarray = r.data.data;
-
-        let arr = newarray.sort(function (a, b) {
-          return parseFloat(b.rating) - parseFloat(a.rating);
-        })
-
-        setData(arr);
-      } else {
-        setData(r.data.data);
-      }
-    });
-  }
   const [SearchParams, setSearchParams] = useSearchParams();
   const [selectrating, setSelectrating] = React.useState(
-    SearchParams.getAll("tag") || []
-  );
+    SearchParams.getAll("tag") || [] );
+  const [data, setData] = React.useState([]);
+  function fetch() {
+    if (data.length === 0) {
+      axios.get("http://localhost:8080/getcar").then((r) => {
+        if (selectrating.length > 0) {
+          let newarray = r.data.data;
+          let arr = newarray.sort(function (a, b) {
+            return parseFloat(b.rating) - parseFloat(a.rating);
+          });
 
-  const handelrating = (tag) => {
-    let newtag = [...selectrating];
-    if (newtag.includes(tag)) {
-      newtag.splice(newtag.indexOf(tag), 1);
-    } else {
-      newtag.push(tag);
+          setData(arr);
+        } else {
+          setData(r.data.data);
+        }
+      });
     }
-    setSelectrating(newtag);
-    setSearchParams({ tag: newtag });
+  }
+  let handlesortprice = (value) => {
+    axios.get(`http://localhost:8080/filterdata/${value}`).then((r) => {
+      setData(r.data.data);
+    });
   };
 
   React.useEffect(() => {
@@ -50,14 +45,20 @@ const Rightsidebar = () => {
   React.useEffect(() => {
     fetch();
   }, [selectrating]);
-  React.useEffect(() => {
-    console.log(data, "data");
-  });
-  const handelclick = (a, b) => {};
 
-  const handlesortprice=()=>{
-    
-  }
+  const handelcart = (price, id, image) => {
+    console.log(price, id, image);
+    let localdata = localStorage.getItem("cartitem");
+    if (localdata === null) {
+      let data = { price: price, id, image };
+      localStorage.setItem("cartitem", JSON.stringify(data));
+    } else {
+      localStorage.clear();
+      let data = { price, id, image };
+      localStorage.setItem("cartitem", JSON.stringify(data));
+    }
+  };
+
   return (
     <div className={style.rightsidecontainer}>
       <div className={style.textbox}>
@@ -127,10 +128,14 @@ const Rightsidebar = () => {
 
       <div className={style.carbox}>
         {filterdata?.map((e) => (
-          <Carbox {...e} handelclick={handelclick} key={e._id} />
+          <Carbox {...e} handlesortprice={handlesortprice} key={e._id} />
         ))}
       </div>
-
+      {/* model filter */}
+      <div className={style.Filtercontainer}>
+        <Filter handlesortprice={handlesortprice} />
+      </div>
+      {/* model end for check */}
       <div className={style.fitercontainer}>
         <div>
           <h1 style={{ marginTop: "10px" }}>Sort By</h1>
@@ -141,6 +146,7 @@ const Rightsidebar = () => {
             _hover={"none"}
             color={"white"}
             className={style.filterbutton}
+            onClick={() => handlesortprice("Economy")}
           >
             Recommended
           </Button>
@@ -151,7 +157,7 @@ const Rightsidebar = () => {
             _hover={"none"}
             color={"white"}
             className={style.filterbutton}
-            onClick={() => handelrating("rating")}
+            onClick={() => handlesortprice("rating")}
           >
             Sort By Rating
           </Button>
@@ -162,17 +168,18 @@ const Rightsidebar = () => {
             _hover={"none"}
             color={"white"}
             className={style.filterbutton}
-            onClick={handlesortprice}
+            onClick={() => handlesortprice("price")}
           >
             Price(low to high)
           </Button>
         </div>
       </div>
+
       {data?.map((e) => (
         <div className={style.maindiv} key={e._id}>
-          <Carbox {...e} />
+          <Carbox {...e} handlesortprice={handlesortprice} />
           <Infodiv />
-          <Pricediv price={e.price} />
+          <Pricediv {...e} handelcart={handelcart} />
         </div>
       ))}
     </div>

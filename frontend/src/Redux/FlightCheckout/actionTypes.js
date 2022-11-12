@@ -1,0 +1,4 @@
+
+export const GET_REQUEST="GET_REQUEST"
+export const GET_SUCESS="GET_SUCESS"
+export const GET_FAILURE="GET_FAILURE"
