@@ -13,26 +13,28 @@ import {
   FormLabel,
   Input,
 } from "@chakra-ui/react";
-const Filter = () => {
+const Filter = ({handlesortprice}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <div>
-      <Button onClick={onOpen}>Enter the Details for BMI</Button>
+      <Button onClick={onOpen}  bg={"#00355d"} _hover={"none"} color={"white"}>Sorting</Button>
 
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>BMI Value Calculator</ModalHeader>
+          <ModalHeader>Sorting</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormControl>
-              <FormLabel>Enter Height in Feet</FormLabel>
-              <Input type="number" placeholder="Enter Height in Feet" />
+              <Button bg={"#00355d"} _hover={"none"} color={"white"} onClick={()=>handlesortprice("price")}>
+                Price (Low to High)
+              </Button>
             </FormControl>
 
             <FormControl>
-              <FormLabel>Enter weight in kg</FormLabel>
-              <Input type="number" placeholder="Enter weight in kg" />
+              <Button bg={"#00355d"} _hover={"none"} color={"white"} onClick={()=>handlesortprice("rating")}>
+                Rating
+              </Button>
             </FormControl>
           </ModalBody>
           <ModalFooter>
