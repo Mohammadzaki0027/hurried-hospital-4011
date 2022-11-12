@@ -10,15 +10,18 @@ import {
 import { BiAbacus } from "react-icons/bi";
 import ModalComp from "./ModalComp";
 import Createtour from "./Createtour";
+import { useNavigate } from "react-router-dom";
 const Sidebar = () => {
   const [filtercheckbox, setFiltercheckbox] = React.useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [des, setDes] = React.useState("");
   const [final, setFinal] = React.useState("");
+ 
   const handelcity = (a, b) => {
     localStorage.setItem("tourdata", JSON.stringify({ city1: a, city2: b }));
     let data = localStorage.getItem("tourdata");
     data = JSON.parse(data);
+  
     setDes(data.city1);
     setFinal(data.city2);
   };

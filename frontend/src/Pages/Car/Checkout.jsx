@@ -4,20 +4,20 @@ import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/Footer";
 
 const Checkout = () => {
-  console.log("zaki");
-  // let data = localStorage.getItem("cartitem");
-  // let citydata = localStorage.getItem("tourdata");
-  // citydata = JSON.parse(citydata);
-  // let from = citydata.city1;
-  // let to = citydata.city2;
-  // let image;
-  // let price;
-  // if (data) {
-  //   data = JSON.parse(data);
+  let data = localStorage.getItem("cartitem");
 
-  //   image = data.image;
-  //   price = data.price;
-  // }
+  let image;
+  let price;
+  if (data) {
+    data = JSON.parse(data);
+    // from = citydata.city1;
+    // to = citydata.city2;
+    image = data.image;
+    price = data.price;
+  }
+  const handlepayment=()=>{
+    
+  }
   return (
     <>
       <Navbar />
@@ -43,10 +43,10 @@ const Checkout = () => {
         >
           {/* first div strting */}
           <Box width={"30%"} textAlign={"center"}>
-            {/* <img src={image} /> */}
+            <img src={image} />
             <Box>
               <span>Price</span>
-              {/* <h1>{price}</h1> */}
+              <h1>{price}</h1>
             </Box>
             <Box textAlign={"center"}>
               <Button
@@ -57,6 +57,7 @@ const Checkout = () => {
                 _hover={"none"}
                 color={"white"}
                 borderColor="green.500"
+                onClick={handlepayment}
               >
                 Book Now
               </Button>
@@ -73,30 +74,9 @@ const Checkout = () => {
             </div>
           </Box>
         </Box>
-        <Box
-          width={["90%", "90%", "70%", "70%"]}
-          border={"2px solid black"}
-          height={"auto"}
-          margin={"auto"}
-          mt={"50px"}
-          alignContent={"center"}
-          textAlign={"center"}
-        >
-          <div style={{ marginTop: "20px", color: "black" }}>
-            {/* <h1
-              style={{
-                marginTop: "20px",
-                color: "black",
-                fontFamily: "sans-serif",
-                fontSize: "25px",
-              }}
-            >
-              From {from} to {to}
-            </h1> */}
-          </div>
-        </Box>
+     
       </Box>
-<Footer/>
+      <Footer />
     </>
   );
 };

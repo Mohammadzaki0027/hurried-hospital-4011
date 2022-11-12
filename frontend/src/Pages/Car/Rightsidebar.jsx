@@ -7,7 +7,7 @@ import { Button } from "@chakra-ui/react";
 import axios from "axios";
 import Infodiv from "./Infodiv";
 import Pricediv from "./Pricediv";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Filter from "./Filter";
 const Rightsidebar = () => {
   const [filterdata, setFilterdata] = React.useState([]);
@@ -15,6 +15,7 @@ const Rightsidebar = () => {
   const [selectrating, setSelectrating] = React.useState(
     SearchParams.getAll("tag") || [] );
   const [data, setData] = React.useState([]);
+  const navigate=useNavigate()
   function fetch() {
     if (data.length === 0) {
       axios.get("http://localhost:8080/getcar").then((r) => {
@@ -45,18 +46,31 @@ const Rightsidebar = () => {
   React.useEffect(() => {
     fetch();
   }, [selectrating]);
+  let tourdata=localStorage.getItem("tourdata")
 
+  let city1=""
+  let city2=""
+ if(tourdata)
+ {
+   city1=tourdata.city1
+     city2=tourdata.city2
+ }
+// city1=""
+// city2=""
+// }
+ 
   const handelcart = (price, id, image) => {
-    console.log(price, id, image);
+ 
     let localdata = localStorage.getItem("cartitem");
     if (localdata === null) {
-      let data = { price: price, id, image };
+      let data = { price: price, id, image ,city2,city2};
       localStorage.setItem("cartitem", JSON.stringify(data));
     } else {
       localStorage.clear();
       let data = { price, id, image };
       localStorage.setItem("cartitem", JSON.stringify(data));
     }
+    navigate("/carcheckout")
   };
 
   return (
