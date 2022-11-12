@@ -7,24 +7,52 @@ const { carRouter } = require("./Routes/Carfilter.route")
 const {userController}=require("./Routes/user.routes")
 const app=express()
 
+
 const redirectURL="/auth/google"
 
 
 
+
 let cors = require('cors')
+const { CarCartRoute } = require("./Routes/CarCart.route")
 app.use(cors())
+
+
+
 require("dotenv").config()
 const PORT=process.env.PORT||8000
 app.use(express.json())
 
-// const cors=require("cors")
-// app.use(cors())
+
+app.use("/",CarCartRoute)
+
 
 app.use("/user",userController)
 
 app.get("/flight",async (req,res)=>{
-    const result= await FlightModule.find()
-    res.send(result)
+  
+    if (req.query.sort=="asc"){
+        const result= await FlightModule.find().sort({price:1})
+        res.send(result)
+    }
+    else if(req.query.sort=="desc"){
+        const result= await FlightModule.find().sort({price:-1})
+        res.send(result)
+    }
+    else if(req.query.sort=="min"){
+        const result= await FlightModule.find().sort({stoptime:1})
+        res.send(result)
+    }
+    else if(req.query.sort=="max"){
+        const result= await FlightModule.find().sort({stoptime:-1})
+        res.send(result)
+    }
+    else{
+        const result= await FlightModule.find()
+        res.send(result)
+
+    }
+   
 })
 
 app.use("/",carRouter)

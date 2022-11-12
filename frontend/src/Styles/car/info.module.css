@@ -1,0 +1,28 @@
+.infocontainer {
+    width: 32%;
+  height: auto;
+ 
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+h1 {
+  color: green;
+}
+
+.pricediv {
+    width: 32%;
+  height: auto;
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+@media screen and (max-width: 900px) {
+
+
+
+
+}

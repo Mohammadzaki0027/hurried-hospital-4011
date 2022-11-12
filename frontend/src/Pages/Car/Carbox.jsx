@@ -3,11 +3,11 @@ import style from "../../Styles/car/box.module.css";
 import { RiContactsFill } from "react-icons/ri";
 
 import { BsFillBagFill } from "react-icons/bs";
-const Carbox = ({seat,image,vehtype,price,handelclick}) => {
+const Carbox = ({seat,image,vehtype,price,handlesortprice}) => {
 
   return (
     <div className={style.corboxcon} onClick={()=>{
-      handelclick(seat,vehtype)
+      handlesortprice(vehtype)
     }}>
       <div className={style.text1}>
         <h1>{vehtype}</h1>
@@ -38,7 +38,7 @@ const Carbox = ({seat,image,vehtype,price,handelclick}) => {
         />
       </div>
       <div className={style.price}>
-        <h1>`From Rs {price}`</h1>
+        <h1>From Rs {price}</h1>
       </div>
     </div>
   );

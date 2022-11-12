@@ -1,58 +1,49 @@
-import React from 'react'
+import React from "react";
 import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    useDisclosure,
-    Button,
-    FormControl,
-    FormLabel,
-    Input,
-  } from "@chakra-ui/react";
-const Filter = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure();
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+} from "@chakra-ui/react";
+const Filter = ({handlesortprice}) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <div><Button onClick={onOpen} >Enter the Details for BMI</Button>
+    <div>
+      <Button onClick={onOpen}  bg={"#00355d"} _hover={"none"} color={"white"}>Sorting</Button>
 
-    <Modal onClose={onClose} isOpen={isOpen} isCentered>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>BMI Value Calculator</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <FormControl>
-            <FormLabel>Enter Height in Feet</FormLabel>
-            <Input
-        
-       
-              type="number"
-              placeholder="Enter Height in Feet"
-         
-            />
-          </FormControl>
+      <Modal onClose={onClose} isOpen={isOpen} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Sorting</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <FormControl>
+              <Button bg={"#00355d"} _hover={"none"} color={"white"} onClick={()=>handlesortprice("price")}>
+                Price (Low to High)
+              </Button>
+            </FormControl>
 
-          <FormControl>
-            <FormLabel>Enter weight in kg</FormLabel>
-            <Input
-    
-          
-              type="number"
-              placeholder="Enter weight in kg"
-        
-            />
-          </FormControl>
-        </ModalBody>
-        <ModalFooter>
-          <Button  >Submit</Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+            <FormControl>
+              <Button bg={"#00355d"} _hover={"none"} color={"white"} onClick={()=>handlesortprice("rating")}>
+                Rating
+              </Button>
+            </FormControl>
+          </ModalBody>
+          <ModalFooter>
+            <Button>Submit</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default Filter
+export default Filter;
