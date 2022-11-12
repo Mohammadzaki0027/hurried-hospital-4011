@@ -6,6 +6,7 @@ CarCartRoute.get("/getcar", async (req, res) => {
   const data = await CarCartModel.find();
   res.send({ msg: "data", data });
 });
+// id  
 CarCartRoute.get("/filterdata/:param", async (req, res) => {
   const { param } = req.params;
   if (param === "price") {
