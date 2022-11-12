@@ -5,10 +5,13 @@ const { FlightModule } = require("./Model/flight.module")
 
 const { carRouter } = require("./Routes/Carfilter.route")
 const {userController}=require("./Routes/user.routes")
+
+const passport = require("./Config/GoogleAuth")
+
 const app=express()
 
 
-const redirectURL="/auth/google"
+
 
 
 
@@ -55,6 +58,25 @@ app.get("/flight",async (req,res)=>{
    
 })
 
+
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile','email'] }));
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login',session:false }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    console.log(req)
+    res.redirect('http://localhost:3000');
+  });
+
+
+
+
+
+
+
 app.use("/",carRouter)
 
 app.listen(PORT,async()=>{
@@ -71,30 +93,3 @@ app.listen(PORT,async()=>{
 
 
 
-function getGoogleAuthURL()
-{
-
-    const rootUrl=""
-
-    const options={
-        redirect_url:`${SERVER_ROOT_URL}/${redirectURL}`,
-
-        client_id:GOOGLE_CLIENT_ID,
-
-        access_type: "offline",
-
-        response_type:"code",
-
-        prompt:"consent",
-        scope:[
-            "",
-        ""
-    ].join(" ")
-
-
-
-
-        };
-
-        return `${rootUrl}?${querystring.stringify(options)}`
-}
