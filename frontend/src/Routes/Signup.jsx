@@ -42,11 +42,11 @@ const MainDiv = styled.div`
     width: 100%;
     padding-bottom: 10px;
   }
-  .checkbox {
+  /* .checkbox {
     justify-content: space-between;
     text-align: start;
     margin: 0.375rem;
-  }
+  } */
   .term {
     font-size: 14px;
   }
@@ -101,6 +101,9 @@ export const Signup = () => {
     <MainDiv>
       <Box>
         <Heading mr="60px">Create an account</Heading>
+        <Box>
+        <i class="fa-brands fa-google"></i>
+        </Box>
         <Box>or</Box>
         <FullWidthTextField
           text={"Email address"}
@@ -179,14 +182,14 @@ export const Signup = () => {
           Continue
         </Button>
       </Box>
-      <p>
+      <p style={{marginTop:"25px"}}>
         Already have an account?
         <span>
           <Link to={"/login"}> Sign in</Link>
         </span>
       </p>
 
-      <p>Other ways to sign up</p>
+      <p style={{marginTop:"25px"}}>Other ways to sign up</p>
     
       {/* <Link to="http://188.166.98.109:5000/auth/google"> <GoogleIcon sx={{ color: "blue" }}  */}
                   
@@ -194,10 +197,10 @@ export const Signup = () => {
 
       {/* {create ? <Navigate to={'/login'}  />:""} */}
 
-{/* <Box style={{display:"flex"}}> */}
+ <Box style={{display:"flex",height:"35px",width:"60px",justifyContent:"space-around",mt:"-30px"}}>
       <Link><i class="fa-brands fa-apple"></i></Link>
       <Link><i class="fa-brands fa-facebook"></i></Link>
-      {/* </Box> */}
+       </Box> 
     </MainDiv>
   );
 };
