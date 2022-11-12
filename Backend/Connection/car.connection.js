@@ -25,7 +25,7 @@ const postfiltercar = async (req, res) => {
   console.log(req.body, "data");
   try {
     await CarCartModel.insertMany([{ seat, image, vehtype, price }]);
-   res.send("data aded");
+    res.send("data aded");
   } catch (error) {
     console.log(error);
     res.status(401).send("eror");
@@ -33,16 +33,21 @@ const postfiltercar = async (req, res) => {
 };
 const getfilter = async (req, res) => {
   const data = await CarfilterModel.find();
-res.send({ msg: "data", data });
+  res.send({ msg: "data", data });
 };
 const filterdatapost = async (req, res) => {
   const { seat, image, vehtype, price } = req.body;
-try {
+  try {
     await CarfilterModel.insertMany([{ seat, image, vehtype, price }]);
   } catch (error) {
     console.log(error);
   }
-res.send("data aded");
+  res.send("data aded");
+};
+
+const paymentcar = async (req, res) => {
+  const { name, cvv, cardno } = req.body;
+ console.log(name, cvv, cardno, "payment");
 };
 module.exports = {
   getcar,
@@ -50,4 +55,5 @@ module.exports = {
   postfiltercar,
   getfilter,
   filterdatapost,
+  paymentcar,
 };

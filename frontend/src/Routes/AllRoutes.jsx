@@ -11,6 +11,7 @@ import FlightPage from "./FlightPage";
 import CarPage from "./CarPage";
 import { FlightPayment } from "../Flight/FlightPayment";
 import Checkout from "../Pages/Car/Checkout";
+import Carpayment from "../Pages/Car/Carpayment";
 
 const AllRoutes = () => {
   return (
@@ -29,6 +30,7 @@ const AllRoutes = () => {
       <Route path="/flight" element={<Flight />} />
       <Route path="/flightcheckout" element={<FlightCheckout />} />
       <Route path="/carcheckout" element={<Checkout />} />
+      <Route path="/carpayment" element={<Carpayment />} />
     </Routes>
   );
 };
