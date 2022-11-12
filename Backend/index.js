@@ -12,6 +12,11 @@ const app=express()
 
 
 
+<<<<<<< HEAD
+=======
+const redirectURL="/auth/google"
+>>>>>>> 32b1029247cb7190f2a1e9fcb2d876857435d7d9
+
 
 
 
