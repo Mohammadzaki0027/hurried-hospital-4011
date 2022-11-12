@@ -5,13 +5,13 @@ import FullWidthTextField from "../components/Input";
 import { Link, Navigate } from "react-router-dom";
  
 import axios from "axios";
-import { Box, Button, Checkbox, Heading, Input } from "@chakra-ui/react";
-// import { StaysInputContext } from "../../Contexts/StaysInputContext";
+import { Box, Button, Checkbox, Heading, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
+import { StaysInputContext } from "../Contexts/StaysInputContext";
 
 const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
-  /* border: 1px solid red; */
+  border: 1px solid red;
   font-family: "Centra No2", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
   align-items: center;
@@ -81,22 +81,42 @@ const MainDiv = styled.div`
     cursor: pointer;
   }
 `;
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
+ const label = { inputProps: { "aria-label": "Checkbox demo" } };
  const Login = () => {
-  // const [user, setUser] = useState({ email: "", password: "" });
+//   const [user, setUser] = useState({ email: "", password: "" });
 
-  // const {auth,handleAuth} = useContext(StaysInputContext) 
+//   const {auth,handleAuth} = useContext(StaysInputContext) 
 
-  // console.log(auth,handleAuth)
-  // const inputHandler = (e) => {
-  //   const { name, value } = e.target;
-  //   setUser({ ...user, [name]: value });
-  // };
-  // console.log(user);
+//   console.log(auth,handleAuth)
+//   const inputHandler = (e) => {
+//     const { name, value } = e.target;
+//     setUser({ ...user, [name]: value });
+//   };
+//   console.log(user);
+
+
+
+const [show, setShow] = React.useState(false)
+  const handleClick = () => setShow(!show)
   return (
     <MainDiv>
       <Box>
         <Heading mr="250px" mb="20px">Sign in</Heading>
+        <Box style={{height:"50px",width:"400px",
+        display:"flex",
+        border:"1px solid red",borderRadius:"10px",
+        cursor:"pointer",background:"#3662d8"}}>
+        <Box style={{border:"1px solid black"}}>
+        <i class="fa-brands fa-google">
+          <span>
+        <Text style={{color:"white"}}> Sign up with Google</Text>
+        </span>
+        </i>
+        </Box>
+        
+         
+        
+        </Box>
         <Box>or</Box>
         <FullWidthTextField
         
@@ -104,11 +124,51 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
           // handle={inputHandler}
           name={"email"}
         />
-        <FullWidthTextField
+        {/* <FullWidthTextField
           text={"Password"}
           // handle={inputHandler}
           name={"password"}
-        />
+        /> */}
+
+
+
+
+
+  
+
+ 
+    <InputGroup size='md'>
+      <Input
+        pr='4.5rem'
+        type={show ? 'text' : 'password'}
+        placeholder='Enter password'
+      />
+      <InputRightElement width='4.5rem' display="flex" justifyContent="flex-end">
+        <i class="fa-solid fa-eye" size='sm' onClick={handleClick}>
+          {/* {show ? 'Hide' : 'Show'} */}
+          </i>
+      </InputRightElement>
+    </InputGroup>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </Box>
 
       <div className="checkbox">
@@ -151,14 +211,14 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
   
       <Link>Forgot password?</Link>
 
-      <p>
+      <p style={{marginTop:"25px"}}>
         Don't have an account?{" "}
         <span>
-          <Link to={"/Signup"}>Create one</Link>
+          <Link to={"/signup"}>Create one</Link>
         </span>
       </p>
 
-      <p>Other ways to sign in</p>
+      <p style={{marginTop:"25px"}}>Other ways to sign in</p>
      
         {/* <Link to="http://188.166.98.109:5000/auth/google"> */}
            {/* <GoogleIcon sx={{ color: "blue" }} 
@@ -166,9 +226,17 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
                   /> */}
                   {/* </Link> */}
       {/* {auth ? <Navigate to={'/'} />:""} */}
+
+
+      <Box style={{display:"flex",height:"35px",width:"60px",justifyContent:"space-around",mt:"-30px"}}>
+      <Link><i class="fa-brands fa-apple"></i></Link>
+      <Link><i class="fa-brands fa-facebook"></i></Link>
+       </Box>
+
+
     </MainDiv>
   );
-};
 
+                }
 
 export default Login;

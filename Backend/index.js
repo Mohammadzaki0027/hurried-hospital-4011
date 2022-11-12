@@ -1,11 +1,16 @@
 const express=require("express")
-const { connection } = require("./Config/db")
+const { connection, SERVER_ROOT_URL, GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET } = require("./Config/db")
 
 const { FlightModule } = require("./Model/flight.module")
 
 const { carRouter } = require("./Routes/Carfilter.route")
 const {userController}=require("./Routes/user.routes")
 const app=express()
+
+const redirectURL="/auth/google"
+
+
+
 let cors = require('cors')
 app.use(cors())
 require("dotenv").config()
@@ -34,3 +39,34 @@ app.listen(PORT,async()=>{
         console.log(error);
     }
 })
+
+
+
+
+function getGoogleAuthURL()
+{
+
+    const rootUrl=""
+
+    const options={
+        redirect_url:`${SERVER_ROOT_URL}/${redirectURL}`,
+
+        client_id:GOOGLE_CLIENT_ID,
+
+        access_type: "offline",
+
+        response_type:"code",
+
+        prompt:"consent",
+        scope:[
+            "",
+        ""
+    ].join(" ")
+
+
+
+
+        };
+
+        return `${rootUrl}?${querystring.stringify(options)}`
+}
