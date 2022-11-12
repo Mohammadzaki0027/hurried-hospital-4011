@@ -18,6 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { Carousel } from "react-responsive-carousel";
 import { StarIcon } from "@chakra-ui/icons";
+import { NavLink } from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useState } from "react";
 import { Filter2 } from "./filter";
@@ -132,86 +133,88 @@ export const Hotel = ({ prop }) => {
             </Box>
 
             <Box width="100%">
-              <Box p="6">
-                <Box
-                  mt="1"
-                  fontWeight="semibold"
-                  fontSize="x-large"
-                  as="h1"
-                  // lineHeight="tight"
-                  noOfLines={1}
-                >
-                  {item.name}
-                </Box>
-
-                <Box>
-                  {item.city}
-                  <br></br>
-                  <p>Pool</p>
-                </Box>
-              </Box>
-              <Box display="flex" ml="7" alignItems="center">
-                {Array(5)
-                  .fill("")
-                  .map((_, i) => (
-                    <StarIcon
-                      color={i < item.stars ? "teal.500" : "gray.300"}
-                    />
-                  ))}
-              </Box>
-
-              <Box
-                ml="7"
-                alignItems="baseline"
-                display="flex"
-                justifyContent="space-between"
-              >
-                <Box display="flex">
+              <NavLink to={`/stay/${item.id}`}>
+                <Box p="6">
                   <Box
-                    as="span"
-                    ml="1"
-                    color="gray.600"
-                    fontWeight="bold"
-                    fontSize="md"
-                  >
-                    {item.rating.toFixed(1)}/5
-                  </Box>
-                  <Box
-                    as="span"
-                    ml="1"
-                    color="gray.600"
-                    fontWeight="bold"
-                    fontSize="md"
-                  >
-                    {item.rating.toFixed(1) > 4.5
-                      ? "Wonderfull"
-                      : item.rating.toFixed(1) > 4
-                      ? "Very Good"
-                      : "Good"}
-                  </Box>
-                </Box>
-                <Box>
-                  <Box
-                    p="5"
-                    as="span"
-                    ml="1"
-                    color="black"
+                    mt="1"
                     fontWeight="semibold"
-                    fontSize="3xl"
+                    fontSize="x-large"
+                    as="h1"
+                    // lineHeight="tight"
+                    noOfLines={1}
                   >
-                    ₹{item.price}
+                    {item.name}
+                  </Box>
+
+                  <Box>
+                    {item.city}
                     <br></br>
-                    <Text
-                      mr="0.5rem"
-                      fontWeight="light"
-                      float="right"
-                      fontSize="sm"
-                    >
-                      {item.price + 500} total
-                    </Text>
+                    <p>Pool</p>
                   </Box>
                 </Box>
-              </Box>
+                <Box display="flex" ml="7" alignItems="center">
+                  {Array(5)
+                    .fill("")
+                    .map((_, i) => (
+                      <StarIcon
+                        color={i < item.stars ? "teal.500" : "gray.300"}
+                      />
+                    ))}
+                </Box>
+
+                <Box
+                  ml="7"
+                  alignItems="baseline"
+                  display="flex"
+                  justifyContent="space-between"
+                >
+                  <Box display="flex">
+                    <Box
+                      as="span"
+                      ml="1"
+                      color="gray.600"
+                      fontWeight="bold"
+                      fontSize="md"
+                    >
+                      {item.rating.toFixed(1)}/5
+                    </Box>
+                    <Box
+                      as="span"
+                      ml="1"
+                      color="gray.600"
+                      fontWeight="bold"
+                      fontSize="md"
+                    >
+                      {item.rating.toFixed(1) > 4.5
+                        ? "Wonderfull"
+                        : item.rating.toFixed(1) > 4
+                        ? "Very Good"
+                        : "Good"}
+                    </Box>
+                  </Box>
+                  <Box>
+                    <Box
+                      p="5"
+                      as="span"
+                      ml="1"
+                      color="black"
+                      fontWeight="semibold"
+                      fontSize="3xl"
+                    >
+                      ₹{item.price}
+                      <br></br>
+                      <Text
+                        mr="0.5rem"
+                        fontWeight="light"
+                        float="right"
+                        fontSize="sm"
+                      >
+                        {item.price + 500} total
+                      </Text>
+                    </Box>
+                  </Box>
+                </Box>
+              </NavLink>
             </Box>
           </Box>
         ))}
