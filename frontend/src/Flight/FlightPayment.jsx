@@ -47,7 +47,7 @@ export const FlightPayment = () => {
       
       }
     }
-    const toast = useToast()
+  
   return (
     <>
      <Navbar/>

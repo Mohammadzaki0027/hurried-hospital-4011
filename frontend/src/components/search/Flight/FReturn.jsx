@@ -1,31 +1,47 @@
-import { Alert, AlertIcon, Box, Button, Input, InputGroup, InputLeftElement, Stack, VStack } from '@chakra-ui/react'
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Input, InputGroup, InputLeftElement, Stack, VStack } from '@chakra-ui/react'
 import { IoLocationSharp } from 'react-icons/io5'
 import { HiOutlineSwitchHorizontal } from 'react-icons/hi'
 import { HiOutlineSwitchVertical } from 'react-icons/hi'
 import React, { useState } from 'react'
-import {  useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const FReturn = () => {
-    const [leave,setLeave]=useState("")
-    const [going,setGoing]=useState("")
+    let [leave,setLeave]=useState("")
+    let [going,setGoing]=useState("")
     const navigate=useNavigate()
+    const [showAlert, setShowAlert] = useState(false)
     const handleSearch=()=>{
-        if(leave=="Mumbai"||"mumbai"&&going=="Delhi"||"delhi"){
+        leave=leave.toLocaleLowerCase()
+        going=going.toLocaleLowerCase()
+        if(leave=="mumbai"&&going=="delhi"){
+            console.log("hello")
             const data={
                 leave:leave,
                 going:going
             }
             localStorage.setItem("Go",JSON.stringify(data))
            navigate("/flight")
-    
+      
         }else{
-          alert('Fill the all details');
-         
+            setShowAlert(true)
+            setTimeout(()=>{
+             setShowAlert(false)
+            },2000)
         }
     }
 
     return (
         <>
+         {showAlert && (
+      <Box style={{position:"sticky",top:"12px",zIndex:"10",width:"40%",margin:"auto"}}>
+        <Alert status='error'>
+          <AlertIcon />
+          <AlertTitle>Error!</AlertTitle>
+          <AlertDescription>Fill the correct City</AlertDescription>
+        </Alert>
+      </Box> 
+      )
+      }
             <Stack direction={['column', 'column', 'column', 'row']} mt=".7rem">
                 <Stack direction={['column', 'row', 'row', 'row']}>
                     <InputGroup>
@@ -33,7 +49,7 @@ const FReturn = () => {
                             pointerEvents='none'
                             children={<IoLocationSharp size={22} color='#343b53' />}
                         />
-                        <Input type='text' value={leave} onChange={(e)=>setLeave(e.target.value)} placeholder='Leaving from' />
+                        <Input type='text' onChange={(e)=>setLeave(e.target.value)} placeholder='Leaving from' />
                     </InputGroup>
                     <Box display={['none', 'block', 'block', 'block']} border="1px solid #c5c7ce" h='2rem' p='.3rem' borderRadius='full'>
                         <HiOutlineSwitchHorizontal size={22} color='#343b53' />
@@ -46,7 +62,7 @@ const FReturn = () => {
                             pointerEvents='none'
                             children={<IoLocationSharp size={22} color='#343b53' />}
                         />
-                        <Input type='text' placeholder='Going to' value={going} onChange={(e)=>setGoing(e.target.value)} />
+                        <Input type='text' placeholder='Going to' onChange={(e)=>setGoing(e.target.value)} />
                     </InputGroup>
                 </Stack>
                 <InputGroup>
