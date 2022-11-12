@@ -4,19 +4,20 @@ import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/Footer";
 
 const Checkout = () => {
-  let data = localStorage.getItem("cartitem");
-  let citydata = localStorage.getItem("tourdata");
-  citydata = JSON.parse(citydata);
-  let from = citydata.city1;
-  let to = citydata.city2;
-  let image;
-  let price;
-  if (data) {
-    data = JSON.parse(data);
+  console.log("zaki");
+  // let data = localStorage.getItem("cartitem");
+  // let citydata = localStorage.getItem("tourdata");
+  // citydata = JSON.parse(citydata);
+  // let from = citydata.city1;
+  // let to = citydata.city2;
+  // let image;
+  // let price;
+  // if (data) {
+  //   data = JSON.parse(data);
 
-    image = data.image;
-    price = data.price;
-  }
+  //   image = data.image;
+  //   price = data.price;
+  // }
   return (
     <>
       <Navbar />
@@ -42,10 +43,10 @@ const Checkout = () => {
         >
           {/* first div strting */}
           <Box width={"30%"} textAlign={"center"}>
-            <img src={image} />
+            {/* <img src={image} /> */}
             <Box>
               <span>Price</span>
-              <h1>{price}</h1>
+              {/* <h1>{price}</h1> */}
             </Box>
             <Box textAlign={"center"}>
               <Button
@@ -82,7 +83,7 @@ const Checkout = () => {
           textAlign={"center"}
         >
           <div style={{ marginTop: "20px", color: "black" }}>
-            <h1
+            {/* <h1
               style={{
                 marginTop: "20px",
                 color: "black",
@@ -91,7 +92,7 @@ const Checkout = () => {
               }}
             >
               From {from} to {to}
-            </h1>
+            </h1> */}
           </div>
         </Box>
       </Box>
