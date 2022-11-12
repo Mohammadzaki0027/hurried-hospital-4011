@@ -48,6 +48,13 @@ app.get("/flight",async (req,res)=>{
     }
    
 })
+app.get("/flightcheckout/:id",async(req,res)=>{
+      const {id}=req.params
+      if(id){
+          const result=await FlightModule.findById({_id:id})
+          res.send(result)
+      }
+})
 
 app.use("/",carRouter)
 

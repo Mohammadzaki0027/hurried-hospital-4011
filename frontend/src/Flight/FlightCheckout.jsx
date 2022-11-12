@@ -1,22 +1,33 @@
-import { Box, Button, Divider, Flex, Heading, Image, Spacer, Text, useDisclosure, VStack } from "@chakra-ui/react";
-import React from "react";
+import { Box, Button, Divider, Flex, Heading, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Spacer, Text, useDisclosure, VStack } from "@chakra-ui/react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { BiInfoCircle } from "react-icons/bi";
 import { BsArrowRight } from "react-icons/bs";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import OurApp from "../components/homepage/OurApp";
 import Navbar from "../components/navbar/Navbar";
-export const FlightCheckout = (data) => {
-  const alldata=useSelector(state=>state.TitleReducer.data)
-  console.log(alldata);
-    var today = new Date();
-  var day= today.getDay()
+export const FlightCheckout = () => {
+  // const data=useSelector(state=>state.TitleReducer.data)
+  // console.log(data);
+  
+  var today = new Date();
+
+  var day= today.getDate()
   var month = today.toLocaleString('default', { month: 'short' });
   const weekday=today.toLocaleString("default",{weekday:"short"})
- 
-  // const alldata = {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [data,setData]=useState({})
+  const {id}=useParams()
+    useEffect(()=>{
+      axios.get(`http://localhost:8080/flightcheckout/${id}`).then((res)=>{
+        console.log(res.data)
+        setData(res.data)
+      })
+    },[])
+  // const data = {
   //   flight_company: "Vistara",
   //   flight_logo:
   //     "https://images.trvl-media.com/media/content/expus/graphics/static_content/fusion/v0.1b/images/airlines/vector/s/UK_sq.svg",
@@ -30,8 +41,67 @@ export const FlightCheckout = (data) => {
   return (
     <>
       <Navbar />
+      <Box display={["flex","flex","flex","none"]}
+      style={{position:"fixed",bottom:"-20px", marginLeft:"70px",zIndex:"20",backgroundColor:"white",paddingBottom:"30px"}}
+      
+      boxShadow="rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px"
+      padding="10px" margin="auto"  alignItems="center" width={["80%","80%","85%"]} >
+          <Flex display>
+            <Text>Trip total</Text>
+            <Heading size={"lg"}>₹{data.price}</Heading>
+            <Text color={"blue"} onClick={onOpen} fontSize="15px">view Price Summary</Text>
+          </Flex>
+          <Spacer/>
+          <Flex>
+            <Link to={`/flightpayment/${id}`}>
+            <Button  colorScheme={"blue"}>Check Out</Button>
+            </Link>
+          </Flex>
+      </Box>
+      {/* view price modal */}
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        borderRadius="1px"
+       
+      >
+        <ModalOverlay />
+        <ModalContent   >
+          <ModalHeader>Price Summary</ModalHeader>
+          <ModalCloseButton/>
+          <Divider borderColor="gray.700"/>
+          <ModalBody pb={6}>
+          <Flex marginTop={"10px"} >
+                <Text fontWeight={"semibold"}>Traveller 1:Adult</Text>
+                <Spacer/>
+                <Text fontWeight={"semibold"}>₹{data.price}.00</Text>
+              </Flex>
+              <Flex marginTop={"10px"} >
+                <Text fontSize={"15px"}>Flight</Text>
+                <Spacer/>
+                <Text fontSize={"15px"}>₹{data.price}.00</Text>
+              </Flex>
+              <Flex marginTop={"10px"} marginBottom="10px" display={"flex"} alignItems="center" gap={"5px"}>
+                <Text fontSize={"14px"}>Taxes and fees</Text>
+                 <BiInfoCircle/>
+              </Flex>
+              <Divider borderColor={"gray.500"}></Divider>
+              <Flex marginTop="25px">
+                <Text fontWeight={"semibold"} fontSize="20px">Trip Total</Text>
+                <Spacer/>
+                <Text  fontWeight={"semibold"} fontSize="20px">₹{data.price}.00</Text>
+              </Flex>
+              <Text fontSize={"12px"}>Rates are quoted in Indian rupees</Text>
+          </ModalBody>
+
+          <ModalFooter>
+            
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+       {/* view price modal */}
       <Box width="90%" marginLeft={"3%"} display="flex" alignItems={"center"}>
-        <Text>{alldata.flight_company} . </Text>
+        <Text>{data.flight_company} . </Text>
         <Text marginRight={"5px"}> BOM</Text>
         <BsArrowRight />
         <Text marginLeft={"5px"} marginRight="15px">
@@ -96,17 +166,17 @@ export const FlightCheckout = (data) => {
               fontSize={"15px"}
               marginTop="5px"
             >
-              <Image w={"20px"} src={alldata.flight_logo}></Image>
+              <Image w={"20px"} src={data.flight_logo}></Image>
               <Text>
-                {alldata.flight_company} .{weekday},{day}
+                {data.flight_company} .{weekday},{day}
                  {month}
               </Text>
             </Flex>
             <Flex marginTop={"20px"}>
-              <Text fontWeight={"semibold"}>{alldata.time}</Text>
+              <Text fontWeight={"semibold"}>{data.time}</Text>
             </Flex>
             <Flex>
-              <Text marginTop={"2px"}>{alldata.stoptime}</Text>
+              <Text marginTop={"2px"}>{data.stoptime}</Text>
             </Flex>
             <Text
               fontSize={"14px"}
@@ -164,12 +234,12 @@ export const FlightCheckout = (data) => {
               <Flex marginTop={"10px"} >
                 <Text fontWeight={"semibold"}>Traveller 1:Adult</Text>
                 <Spacer/>
-                <Text fontWeight={"semibold"}>₹{alldata.price}.00</Text>
+                <Text fontWeight={"semibold"}>₹{data.price}.00</Text>
               </Flex>
               <Flex marginTop={"10px"} >
                 <Text fontSize={"15px"}>Flight</Text>
                 <Spacer/>
-                <Text fontSize={"15px"}>₹{alldata.price}.00</Text>
+                <Text fontSize={"15px"}>₹{data.price}.00</Text>
               </Flex>
               <Flex marginTop={"10px"} marginBottom="10px" display={"flex"} alignItems="center" gap={"5px"}>
                 <Text fontSize={"14px"}>Taxes and fees</Text>
@@ -179,27 +249,13 @@ export const FlightCheckout = (data) => {
               <Flex marginTop="25px">
                 <Text fontWeight={"semibold"} fontSize="20px">Trip Total</Text>
                 <Spacer/>
-                <Text  fontWeight={"semibold"} fontSize="20px">₹{alldata.price}.00</Text>
+                <Text  fontWeight={"semibold"} fontSize="20px">₹{data.price}.00</Text>
               </Flex>
               <Text fontSize={"12px"}>Rates are quoted in Indian rupees</Text>
-              <Link to={"/flightpayment"}>  <Button marginTop={"20px"} colorScheme={"blue"} w={"100%"}>Checkout</Button></Link>
+              <Link to={`/flightpayment/${id}`}>  <Button marginTop={"20px"} colorScheme={"blue"} w={"100%"}>Checkout</Button></Link>
         </Box>
       </Box>
-      <Box display={["flex","flex","flex","none"]}
-      boxShadow="rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px"
-      position="sticky" zIndex={"10"}  padding="10px" margin="auto"  alignItems="center" width={["80%","80%","80%"]} >
-          <Flex display>
-            <Text>Trip total</Text>
-            <Heading size={"lg"}>₹{alldata.price}</Heading>
-            <Text color={"blue"} fontSize="15px">view Price Summary</Text>
-          </Flex>
-          <Spacer/>
-          <Flex>
-            <Link to={"/flightpayment"}>
-            <Button  colorScheme={"blue"}>Check Out</Button>
-            </Link>
-          </Flex>
-      </Box>
+      
       <Box w={"90%"} margin="auto">
       <OurApp/>
       </Box>

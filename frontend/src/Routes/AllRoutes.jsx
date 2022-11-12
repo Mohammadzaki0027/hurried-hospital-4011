@@ -52,9 +52,8 @@ const AllRoutes = () => {
         <Route path="/car" element={<Car/>}/>
 
 
-        <Route path='/flight' element={<Flight/>}/>
-        <Route path="/flightcheckout" element={<FlightCheckout/>} />
-        <Route path='/flightpayment' element={<FlightPayment/>}/>
+       
+        <Route path="/flightpayment/:id" element={<FlightPayment/>}/>
 
 
       <Route path="/" element={<Homepage />} />
@@ -63,10 +62,11 @@ const AllRoutes = () => {
       <Route path="/car" element={<Car />} />
 
       <Route path="/flight" element={<Flight />} />
-      <Route path="/flightcheckout" element={<FlightCheckout />} />
+      <Route path="/flightcheckout/:id" element={<FlightCheckout />} />
       <Route path="/carcheckout" element={<Checkout />} />
     </Routes>
   );
 };
 
 export default AllRoutes;
+;
