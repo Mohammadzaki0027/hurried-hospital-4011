@@ -14,8 +14,8 @@ import { useNavigate } from "react-router-dom";
 const Sidebar = () => {
   const [filtercheckbox, setFiltercheckbox] = React.useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [des, setDes] = React.useState("");
-  const [final, setFinal] = React.useState("");
+  const [des, setDes] = React.useState("Mumbai");
+  const [final, setFinal] = React.useState("Thane");
  
   const handelcity = (a, b) => {
     localStorage.setItem("tourdata", JSON.stringify({ city1: a, city2: b }));
