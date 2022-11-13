@@ -47,7 +47,11 @@ const filterdatapost = async (req, res) => {
 
 const paymentcar = async (req, res) => {
   const { name, cvv, cardno } = req.body;
- console.log(name, cvv, cardno, "payment");
+if(name!==""&&cvv!==""&&cardno!==""){
+  res.status(200).send({msg:"done"})
+}else{
+  res.status(401).send({msg:"failed"})
+}
 };
 module.exports = {
   getcar,

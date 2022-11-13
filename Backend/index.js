@@ -1,4 +1,3 @@
-
 const express = require("express");
 const { connection } = require("./Config/db");
 
@@ -6,18 +5,17 @@ const { FlightModule } = require("./Model/flight.module");
 
 const { carRouter } = require("./Routes/Carfilter.route");
 const { userController } = require("./Routes/user.routes");
-const passport = require("./Config/GoogleAuth")
+const passport = require("./Config/GoogleAuth");
 const app = express();
-
 let cors = require("cors");
 const { CarCartRoute } = require("./Routes/CarCart.route");
 const { StayModule } = require("./Model/stay.module");
 
-require("dotenv").config()
-const PORT=process.env.PORT||8000
-app.use(express.json())
-app.use(cors())
-const { CarCartRoute } = require("./Routes/CarCart.route")
+require("dotenv").config();
+const PORT = process.env.PORT || 8000;
+app.use(express.json());
+app.use(cors());
+
 app.use("/", CarCartRoute);
 app.use("/user", userController);
 
@@ -39,32 +37,37 @@ app.get("/flight", async (req, res) => {
     res.send(result);
   }
 });
-app.get("/flightcheckout/:id",async(req,res)=>{
-      const {id}=req.params
-      if(id){
-          const result=await FlightModule.findById({_id:id})
-          res.send(result)
-      }
-})
+app.get("/flightcheckout/:id", async (req, res) => {
+  const { id } = req.params;
+  if (id) {
+    const result = await FlightModule.findById({ _id: id });
+    res.send(result);
+  }
+});
 app.get("/stay", async (req, res) => {
   const result = await StayModule.find();
   res.send(result);
 });
 app.use("/", carRouter);
 
+const redirectURL = "/auth/google";
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
 
-
-const redirectURL="/auth/google"
-app.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile','email'] }));
-
-app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login',session:false }),
-  function(req, res) {
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "/login",
+    session: false,
+  }),
+  function (req, res) {
     // Successful authentication, redirect home.
-    console.log(req)
-    res.redirect('http://localhost:3000');
-  });
+    console.log(req);
+    res.redirect("http://localhost:3000");
+  }
+);
 
 app.listen(PORT, async () => {
   try {
@@ -75,4 +78,3 @@ app.listen(PORT, async () => {
     console.log(error);
   }
 });
-

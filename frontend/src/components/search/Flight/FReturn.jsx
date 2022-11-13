@@ -14,7 +14,7 @@ const FReturn = () => {
         leave=leave.toLocaleLowerCase()
         going=going.toLocaleLowerCase()
         if(leave=="mumbai"&&going=="delhi"){
-            console.log("hello")
+          
             const data={
                 leave:leave,
                 going:going

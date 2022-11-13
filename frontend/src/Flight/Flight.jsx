@@ -108,7 +108,7 @@ const {
        
   }
   useEffect(()=>{
-    console.log(single,"singleobject")
+
   },[single])
   return (
     <>

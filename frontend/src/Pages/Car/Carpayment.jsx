@@ -60,9 +60,10 @@ const Carpayment = () => {
     axios
       .post("http://localhost:8080/carpayment", paymentdata)
       .then((r) => {
+        console.log(r);
         toast({
-          title: "Account created.",
-          description: "We've created your account for you.",
+          title: "Sucessfully Book.",
+          description: "We've  sucessfully booked .",
           status: "success",
           duration: 9000,
           isClosable: true,

@@ -13,6 +13,8 @@ import CarPage from "./CarPage";
 import { FlightPayment } from "../Flight/FlightPayment";
 import Checkout from "../Pages/Car/Checkout";
 import Carpayment from "../Pages/Car/Carpayment";
+import { Stay } from "../components/stays/Stay";
+import { SingleStay } from "../components/stays/SingleStay";
 
 
 const AllRoutes = () => {
@@ -27,7 +29,11 @@ const AllRoutes = () => {
       <Route path="/flightcheckout/:id" element={<FlightCheckout />} />
       <Route path="/carcheckout" element={<Checkout />} />
       <Route path="/carpayment" element={<Carpayment />} />
-
+      <Route path="/stay" element={<Stay/>} />
+      <Route path="/stay/:id" element={<SingleStay />} />
+      <Route path="/flight-page" element={<FlightPage />} />
+      <Route path="/stay-page" element={<StayPage />} />
+      <Route path="/car-page" element={<CarPage />} />
     </Routes>
   );
 };
