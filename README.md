@@ -74,5 +74,5 @@ sections. Here you can see demo products of bluemercury.com.
 
 
 ## Deployed Link
- [![deployed link](https://waytoglobe.vercel.app/)
+ [![deployed link](https://waytoglobe.vercel.app/)]
 
