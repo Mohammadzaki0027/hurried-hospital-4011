@@ -2,7 +2,9 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import FullWidthTextField from "../components/Input";
 
+
 import { Link, Navigate, useNavigate } from "react-router-dom";
+
 
 import axios from "axios";
 import { Box, Button, Checkbox, Heading, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/react";
@@ -85,8 +87,10 @@ const MainDiv = styled.div`
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 const Login = () => {
 
+
   const [show, setShow] = React.useState(false)
   const handleClick = () => setShow(!show)
+
 
 
 
@@ -124,6 +128,81 @@ const handleGoogle=()=>{
 
   // console.log(email,password)
   return (
+
+    <MainDiv>
+      <Box>
+        <Heading mr="250px" mb="20px">Sign in</Heading>
+        <Box>or</Box>
+        <FullWidthTextField
+
+          text={"Email address"}
+          // handle={inputHandler}
+          name={"email"}
+        />
+        <FullWidthTextField
+          text={"Password"}
+          // handle={inputHandler}
+          name={"password"}
+        />
+      </Box>
+
+      <div className="checkbox">
+
+        <Checkbox size={"md"} defaultChecked>Keep me signed in</Checkbox>
+
+
+        {/* <Checkbox {...label} defaultChecked /> */}
+        {/* <label htmlFor="">This is a public or shared device</label> */}
+      </div>
+      <Box className="term checkboxCondition">
+        Selecting this checkbox will keep you signed into your account on this device until you sign out. Do not select this on shared devices.
+      </Box>
+      <Box className="term">
+        By signing in, I agree to the Expedia{" "}
+        <Link to="/terms" >
+          Terms and Conditions
+        </Link>
+        ,{" "}
+        <Link to="/privacy" >
+          Privacy Statement
+        </Link>{" "}
+        and{" "}
+        <Link to="/rewards/terms" >
+          Expedia Rewards Terms and Conditions
+        </Link>
+        .
+      </Box>
+      <Box>
+        <Button
+        // onClick={() => {
+        //   axios
+        //     .post(`http://188.166.98.109:5000/login`, user)
+        //     .then((data) => alert("you logged in")).then(data=>handleAuth(true))
+        // }}
+        >
+          Sign in
+        </Button>
+      </Box>
+
+      <Link>Forgot password?</Link>
+
+      <p>
+        Don't have an account?{" "}
+        <span>
+          <Link to={"/Signup"}>Create one</Link>
+        </span>
+      </p>
+
+      <p>Other ways to sign in</p>
+
+      {/* <Link to="http://188.166.98.109:5000/auth/google"> */}
+      {/* <GoogleIcon sx={{ color: "blue" }} 
+                  
+                  /> */}
+      {/* </Link> */}
+      {/* {auth ? <Navigate to={'/'} />:""} */}
+    </MainDiv>
+
     <>
       <Navbar />
 
@@ -230,6 +309,7 @@ const handleGoogle=()=>{
       </MainDiv>
 
     </>
+
   );
 
 }

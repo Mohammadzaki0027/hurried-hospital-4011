@@ -11,7 +11,7 @@ const FlightPage = () => {
     <>
       <Navbar />
       <Box w={['95%', '95%', '95%', '78%']} margin="auto">
-      <Text fontSize={['xl','xl','2xl','3xl']} fontWeight={600}>Search flights</Text>
+        <Text fontSize={['xl', 'xl', '2xl', '3xl']} fontWeight={600}>Search flights</Text>
         <FlightSearch />
         <Box display={"flex"} my="2rem" justifyContent={"center"}>
           <Image src="https://tpc.googlesyndication.com/simgad/12535850531646588924?" />

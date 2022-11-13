@@ -1,3 +1,4 @@
+
 import React from "react";
 import Car from "../Pages/Car/Car";
 import Flight from "../Flight/Flight";
@@ -13,11 +14,11 @@ import { FlightPayment } from "../Flight/FlightPayment";
 import Checkout from "../Pages/Car/Checkout";
 import Carpayment from "../Pages/Car/Carpayment";
 
+
 const AllRoutes = () => {
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
+
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/" element={<Homepage />} />
@@ -25,12 +26,9 @@ const AllRoutes = () => {
       <Route path="/flight" element={<Flight />} />
       <Route path="/flightcheckout" element={<FlightCheckout />} />
       <Route path="/flightpayment" element={<FlightPayment />} />
-      <Route path="/" element={<Homepage />} />
-      <Route path="/car" element={<Car />} />
-      <Route path="/flight" element={<Flight />} />
-      <Route path="/flightcheckout" element={<FlightCheckout />} />
       <Route path="/carcheckout" element={<Checkout />} />
       <Route path="/carpayment" element={<Carpayment />} />
+
     </Routes>
   );
 };
