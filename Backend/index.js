@@ -38,6 +38,13 @@ app.get("/flight", async (req, res) => {
     res.send(result);
   }
 });
+app.get("/flightcheckout/:id",async(req,res)=>{
+      const {id}=req.params
+      if(id){
+          const result=await FlightModule.findById({_id:id})
+          res.send(result)
+      }
+})
 app.get("/stay", async (req, res) => {
   const result = await StayModule.find();
   res.send(result);
@@ -65,18 +72,5 @@ app.get('/auth/google/callback',
     console.log(req)
     res.redirect('http://localhost:3000');
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

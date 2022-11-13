@@ -18,14 +18,13 @@ import Carpayment from "../Pages/Car/Carpayment";
 const AllRoutes = () => {
   return (
     <Routes>
-
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+       <Route path="/flightpayment/:id" element={<FlightPayment/>}/>
       <Route path="/" element={<Homepage />} />
       <Route path="/car" element={<Car />} />
       <Route path="/flight" element={<Flight />} />
-      <Route path="/flightcheckout" element={<FlightCheckout />} />
-      <Route path="/flightpayment" element={<FlightPayment />} />
+      <Route path="/flightcheckout/:id" element={<FlightCheckout />} />
       <Route path="/carcheckout" element={<Checkout />} />
       <Route path="/carpayment" element={<Carpayment />} />
 
@@ -34,3 +33,4 @@ const AllRoutes = () => {
 };
 
 export default AllRoutes;
+;
