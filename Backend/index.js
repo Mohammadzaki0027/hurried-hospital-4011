@@ -1,3 +1,4 @@
+
 const express = require("express");
 const { connection } = require("./Config/db");
 
@@ -10,14 +11,13 @@ const app = express();
 let cors = require("cors");
 const { CarCartRoute } = require("./Routes/CarCart.route");
 const { StayModule } = require("./Model/stay.module");
-app.use(cors());
 
-require("dotenv").config();
-const PORT = process.env.PORT || 8000;
-app.use(express.json());
-
+require("dotenv").config()
+const PORT=process.env.PORT||8000
+app.use(express.json())
+app.use(cors())
+const { CarCartRoute } = require("./Routes/CarCart.route")
 app.use("/", CarCartRoute);
-
 app.use("/user", userController);
 
 app.get("/flight", async (req, res) => {
@@ -53,3 +53,30 @@ app.listen(PORT, async () => {
     console.log(error);
   }
 });
+const passport = require("./Config/GoogleAuth")
+const redirectURL="/auth/google"
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile','email'] }));
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login',session:false }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    console.log(req)
+    res.redirect('http://localhost:3000');
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

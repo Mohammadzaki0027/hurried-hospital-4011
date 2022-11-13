@@ -2,21 +2,23 @@ import { Box, Button, Text } from "@chakra-ui/react";
 import React from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   let data = localStorage.getItem("cartitem");
-  let citydata = localStorage.getItem("tourdata");
-  citydata = JSON.parse(citydata);
-  let from = citydata.city1;
-  let to = citydata.city2;
+  let nav = useNavigate();
   let image;
   let price;
   if (data) {
     data = JSON.parse(data);
-
+    // from = citydata.city1;
+    // to = citydata.city2;
     image = data.image;
     price = data.price;
   }
+  const handlepayment = () => {
+    nav("/carpayment",{replace:true});
+  };
   return (
     <>
       <Navbar />
@@ -32,7 +34,7 @@ const Checkout = () => {
         </Text>
         <Box
           width={["90%", "90%", "70%", "70%"]}
-          border={"2px solid black"}
+      
           height={"auto"}
           margin={"auto"}
           mt={"50px"}
@@ -45,7 +47,7 @@ const Checkout = () => {
             <img src={image} />
             <Box>
               <span>Price</span>
-              <h1>{price}</h1>
+              <h1 style={{color:"black" ,fontStyle:"bold", fontSize:"22px"}}>{price}</h1>
             </Box>
             <Box textAlign={"center"}>
               <Button
@@ -55,7 +57,8 @@ const Checkout = () => {
                 bg={"#00355d"}
                 _hover={"none"}
                 color={"white"}
-                borderColor="green.500"
+           
+                onClick={handlepayment}
               >
                 Book Now
               </Button>
@@ -63,39 +66,17 @@ const Checkout = () => {
           </Box>
           {/* first div */}
 
-          <Box width={"40%"} textAlign={"center"}>
+          <Box width={"40%"} textAlign={"center"}  >
             <div style={{ marginTop: "20px" }}>
-              <h1>Inclusive for Free</h1>
-              <h1>Collision Waiver Damage</h1>
-              <h1>Theif Protection</h1>
-              <h1>Cancellation </h1>
+              <h1 style={{color:"black" ,fontStyle:"italic", fontSize:"20px"}}>Inclusive for Free</h1>
+              <h1 style={{color:"black" ,fontStyle:"italic", fontSize:"20px"}}>Collision Waiver Damage</h1>
+              <h1 style={{color:"black" ,fontStyle:"italic", fontSize:"20px"}}>Theif Protection</h1>
+              <h1 style={{color:"black" ,fontStyle:"italic", fontSize:"20px"}}>Cancellation </h1>
             </div>
           </Box>
         </Box>
-        <Box
-          width={["90%", "90%", "70%", "70%"]}
-          border={"2px solid black"}
-          height={"auto"}
-          margin={"auto"}
-          mt={"50px"}
-          alignContent={"center"}
-          textAlign={"center"}
-        >
-          <div style={{ marginTop: "20px", color: "black" }}>
-            <h1
-              style={{
-                marginTop: "20px",
-                color: "black",
-                fontFamily: "sans-serif",
-                fontSize: "25px",
-              }}
-            >
-              From {from} to {to}
-            </h1>
-          </div>
-        </Box>
       </Box>
-<Footer/>
+      <Footer />
     </>
   );
 };
