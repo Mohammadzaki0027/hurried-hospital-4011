@@ -17,9 +17,9 @@ const getFailure=()=>{
         type:GET_FLIGHT_FAILURE
     }
 }
-export const flightData=(payload)=>(dispatch)=>{
+export const flightData=(val)=>(dispatch)=>{
     dispatch(getRequest())
-  return axios.get("http://localhost:8080/flight").then((res)=>{
+  return axios.get(`http://localhost:8080/flight?sort=${val}`).then((res)=>{
            console.log(res.data);
    return  dispatch(getSucess(res.data))
  }).catch((err)=>{

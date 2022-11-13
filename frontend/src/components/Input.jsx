@@ -11,6 +11,7 @@ export default function FullWidthTextField({ text, handle, name }) {
       }}
     >
       <Input
+      padding={"5px"}
         fullWidth
         placeholder={text}
         id="fullWidth"
