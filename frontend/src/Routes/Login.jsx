@@ -105,10 +105,12 @@ const Login = () => {
       email, password
     }
     try {
-      let res = await axios.post("http://localhost:8080/user/login", payload)
+      let res = await axios.post("https://way-to-globe-unit-6.onrender.com/user/login", payload)
       console.log(res.data)
       localStorage.setItem("token", res.data.token)
       alert("You are logged in")
+      localStorage.setItem("auth",JSON.stringify({isAuth:true}))
+
       navigate("/")
     }
     catch (err) {
@@ -124,7 +126,7 @@ const Login = () => {
   }
 
 const handleGoogle=()=>{
-  window.open("http://localhost:8080/auth/google","_self")
+  window.open("https://way-to-globe-unit-6.onrender.com/auth/google","_self")
 }
 
 

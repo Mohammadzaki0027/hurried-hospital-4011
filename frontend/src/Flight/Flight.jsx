@@ -85,12 +85,15 @@ const {
   onClose: onCloseModal2 
 } = useDisclosure()
   const [single,setSingle]=useState({})
+
   var today = new Date();
-  var day= today.getDay()
+  var day= today.getDate()
   var month = today.toLocaleString('default', { month: 'short' });
   const weekday=today.toLocaleString("default",{weekday:"short"})
   const [val,setValue]=useState("asc")
-  console.log(val);
+   let arr=JSON.parse(localStorage.getItem("Go"))
+   let leaving =arr.leave
+   let going=arr.going
   useEffect(() => {
     dispatch(flightData(val)).then((res) => {
       // console.log(res);
@@ -104,10 +107,13 @@ const {
        dispatch(getData(item))
        
   }
+  useEffect(()=>{
+
+  },[single])
   return (
     <>
       <Navbar />
-       <Box onClick={onOpenModal2}  display={["block","block","block","none"]} border={"1px solid red"} marginTop="-25px" padding={"4px"} paddingLeft="30px">
+       <Box onClick={onOpenModal2}  display={["block","block","block","none"]}  marginTop="-25px" padding={"4px"} paddingLeft="30px">
           <Text fontSize={"20px"} color="rgb(54,98,216)">Mumbai To Delhi</Text>
           <Text color="rgb(54,98,216)" fontSize={"15px"}>{weekday},{month} {day} .1 traveller</Text>
        </Box>
@@ -123,7 +129,7 @@ const {
             pointerEvents="none"
             children={<IoLocationSharp size={22} color="#343b53" />}
           />
-          <Input  type="text" placeholder="Leaving from" />
+          <Input  type="text" value={leaving} placeholder="Leaving from" />
         </InputGroup>
         <HiOutlineArrowsRightLeft color="blue" size={"60"} />
         <InputGroup>
@@ -131,7 +137,7 @@ const {
             pointerEvents="none"
             children={<IoLocationSharp  size={22} color="#343b53" />}
           />
-          <Input type="text" placeholder="Going to" />
+          <Input type="text" value={going} placeholder="Going to" />
         </InputGroup>
         </HStack>
         <HStack>
@@ -166,7 +172,7 @@ const {
             pointerEvents="none"
             children={<IoLocationSharp size={22} color="#343b53" />}
           />
-          <Input type="text" placeholder="Leaving from" />
+          <Input type="text" value={leaving} placeholder="Leaving from" />
         </InputGroup>
         <HiOutlineArrowsRightLeft color="blue" size={"60"} />
         <InputGroup>
@@ -174,7 +180,7 @@ const {
             pointerEvents="none"
             children={<IoLocationSharp  size={22} color="#343b53" />}
           />
-          <Input type="text" placeholder="Going to" />
+          <Input type="text" value={going} placeholder="Going to" />
         </InputGroup>
         <InputGroup w="20vw" h="7vh" gap="10px">
           <Input type="date" />
@@ -691,7 +697,7 @@ const {
                 <Flex>
                   
                    <Button marginTop={"10px"} width="100%" colorScheme="blue">
-                   <Link to="/flightcheckout">Select</Link></Button>
+                   <Link to={`/flightcheckout/${single._id}`}>Select</Link></Button>
                   
                 </Flex>
             </Box>
@@ -716,9 +722,7 @@ const {
       <OurApp/>
       </Box>
       <Footer/>
-      <div style={{display:"none"}}>
-        <FlightCheckout data={single} />
-      </div>
+    
     </>
   );
 }

@@ -13,7 +13,7 @@ const Homepage = () => {
     return (
         <>
             <Navbar />
-            <Box /*w="74%"*/ w={['95%','95%','95%','78%']} margin="auto">
+            <Box /*w="74%"*/ w={['95%', '95%', '95%', '78%']} margin="auto">
                 <MainSearch />
                 <br />
                 <br />

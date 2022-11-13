@@ -5,14 +5,21 @@ import { GrLanguage } from 'react-icons/gr'
 import {IoMdBriefcase} from 'react-icons/io'
 import { BsFillBellFill } from 'react-icons/bs'
 import SignInDropDown, { SmSignInDropDown } from './SignInDropDown';
-
+import { useNavigate} from "react-router-dom"
 const Navbar = () => {
+  const nav=useNavigate()
+  const handelnavigate=()=>{
+nav("/")
+  }
   return (
     <Box borderBottom="1px solid #c5c7ce" mb="2rem">
       <Box m="auto" w={["100%","100%","100%","76%"]} display="flex" py=".8rem" >
         <Box display="flex" w="100%" justifyContent={"space-between"}>
-          <Box display="flex">
-            <Image w={["75%","55%","26%","26%"]} src={Logo} />
+          <Box display="flex" >
+     
+            
+            <Image w={["75%","55%","26%","26%"]} src={Logo}  onClick={handelnavigate}/>
+          
             <Box display={['none','none','block','block']}>
               <DropDown />
             </Box>
