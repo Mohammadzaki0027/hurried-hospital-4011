@@ -186,6 +186,7 @@ export const Signup = () => {
             </InputRightElement>
           </InputGroup>
       </Box>
+      
       <Box className="checkbox">
 
 

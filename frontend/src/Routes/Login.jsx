@@ -9,6 +9,12 @@ import { Box, Button, Checkbox, Heading, Input, InputGroup, InputRightElement, T
 
 import Navbar from "../components/navbar/Navbar";
 
+
+
+
+
+
+
 const MainDiv = styled.div`
   display: flex;
   flex-direction: column;
