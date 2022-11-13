@@ -6,6 +6,7 @@ const { FlightModule } = require("./Model/flight.module");
 
 const { carRouter } = require("./Routes/Carfilter.route");
 const { userController } = require("./Routes/user.routes");
+const passport = require("./Config/GoogleAuth")
 const app = express();
 
 let cors = require("cors");
@@ -51,16 +52,8 @@ app.get("/stay", async (req, res) => {
 });
 app.use("/", carRouter);
 
-app.listen(PORT, async () => {
-  try {
-    console.log(`connected ${PORT}`);
-    await connection;
-    console.log("connected");
-  } catch (error) {
-    console.log(error);
-  }
-});
-const passport = require("./Config/GoogleAuth")
+
+
 const redirectURL="/auth/google"
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile','email'] }));
@@ -73,4 +66,13 @@ app.get('/auth/google/callback',
     res.redirect('http://localhost:3000');
   });
 
+app.listen(PORT, async () => {
+  try {
+    console.log(`connected ${PORT}`);
+    await connection;
+    console.log("connected");
+  } catch (error) {
+    console.log(error);
+  }
+});
 
