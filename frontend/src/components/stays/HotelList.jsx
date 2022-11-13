@@ -36,6 +36,9 @@ export const Hotel = ({ prop }) => {
     setFilter(e.target.value);
     if (e.target.value === "option1") {
       prop = prop.sort((a, b) => b.price - a.price);
+    } else if (e.target.value == "option2") {
+      setFilter(e.target.value);
+      prop = prop.sort((a, b) => b.rating - a.rating);
     } else {
       setFilter(e.target.value);
       prop = prop.sort((a, b) => a.price - b.price);
@@ -44,9 +47,9 @@ export const Hotel = ({ prop }) => {
 
   const sizes = ["full"];
 
-  if (prop.length === 0) {
+  if (prop?.length === 0) {
     return (
-      <Stack border="1px solid" maxW="100%" p="2">
+      <Stack maxW="100%" p="2">
         <Box maxW="100%"> No Result Found</Box>
       </Stack>
     );
@@ -100,7 +103,7 @@ export const Hotel = ({ prop }) => {
           </Select>
         </Stack>
       </Hide>
-      <Stack border="1px solid" maxW="100%" minW="60%" p="2">
+      <Stack maxW="100%" minW="60%" p="2">
         {prop?.map((item) => (
           <Box
             key={item.id}
