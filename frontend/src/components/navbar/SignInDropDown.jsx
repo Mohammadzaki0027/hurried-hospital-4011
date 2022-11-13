@@ -15,11 +15,17 @@ import React from "react";
 import {Link } from "react-router-dom";
 
 const SignInDropDown = () => {
-  let data = localStorage.getItem("auth");
-  data = JSON.parse(data);
-  console.log(data);
-  let isAuth = data.isAuth;
-
+  let data = JSON.parse(localStorage.getItem("auth"))||null;
+ 
+  let isAuth;
+  if(data)
+  {
+    
+    console.log(data);
+     isAuth = data.isAuth;
+  }else{
+    isAuth=false
+  }
 
 
   const handelsignout = () => {
