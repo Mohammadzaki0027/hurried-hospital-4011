@@ -51,7 +51,7 @@ export const SingleStay = () => {
   const [mprice, setMprice] = useState();
   const toast = useToast();
   useEffect(() => {
-    axios.get("http://localhost:8080/stay").then((r) => {
+    axios.get("https://way-to-globe-unit-6.onrender.com/stay").then((r) => {
       setProp(r.data.filter((item) => item.id == id));
       console.log(r.data);
     });

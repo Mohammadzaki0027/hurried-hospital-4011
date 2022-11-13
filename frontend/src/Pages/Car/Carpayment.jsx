@@ -17,7 +17,9 @@ import React from "react";
 import axios from "axios";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/navbar/Navbar";
+import { Navigate, useNavigate } from "react-router-dom";
 const Carpayment = () => {
+  const navigate=useNavigate();
   const toast = useToast();
   const [price, setPrice] = React.useState("");
   const [paymentdata, setPaymentdata] = React.useState({
@@ -58,7 +60,7 @@ const Carpayment = () => {
   };
   const fetchpayment = () => {
     axios
-      .post("http://localhost:8080/carpayment", paymentdata)
+      .post("https://way-to-globe-unit-6.onrender.com/carpayment", paymentdata)
       .then((r) => {
         console.log(r);
         toast({
@@ -69,6 +71,7 @@ const Carpayment = () => {
           isClosable: true,
           position: "top",
         });
+        navigate('/')
         return r;
       })
       .then((r) => {})

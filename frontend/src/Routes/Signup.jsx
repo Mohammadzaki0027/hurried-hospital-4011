@@ -116,7 +116,7 @@ export const Signup = () => {
     }
 
     try {
-      let sign = await axios.post("http://localhost:8080/user/signup", payload)
+      let sign = await axios.post("https://way-to-globe-unit-6.onrender.com/user/signup", payload)
       alert("signup successfull")
       navigate("/login")
     }
@@ -127,7 +127,7 @@ export const Signup = () => {
   }
 
   const handleGoogle=()=>{
-    window.open("http://localhost:8080/auth/google","_self")
+    window.open("https://way-to-globe-unit-6.onrender.com/auth/google","_self")
   }
 
   return (
