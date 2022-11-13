@@ -18,7 +18,7 @@ const Rightsidebar = () => {
   const navigate=useNavigate()
   function fetch() {
     if (data.length === 0) {
-      axios.get("http://localhost:8080/getcar").then((r) => {
+      axios.get("https://way-to-globe-unit-6.onrender.com/getcar").then((r) => {
         if (selectrating.length > 0) {
           let newarray = r.data.data;
           let arr = newarray.sort(function (a, b) {
@@ -33,13 +33,13 @@ const Rightsidebar = () => {
     }
   }
   let handlesortprice = (value) => {
-    axios.get(`http://localhost:8080/filterdata/${value}`).then((r) => {
+    axios.get(`https://way-to-globe-unit-6.onrender.com/filterdata/${value}`).then((r) => {
       setData(r.data.data);
     });
   };
 
   React.useEffect(() => {
-    axios.get("http://localhost:8080/getfilter").then((r) => {
+    axios.get("https://way-to-globe-unit-6.onrender.com/getfilter").then((r) => {
       setFilterdata(r.data.data);
     });
   }, [selectrating]);

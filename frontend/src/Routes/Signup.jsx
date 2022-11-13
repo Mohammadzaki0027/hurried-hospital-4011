@@ -93,10 +93,13 @@ export const Signup = () => {
     surname: "",
   });
 
+
+  const [create, setCreate] = useState(false);
+
   const [show, setShow] = React.useState(false)
   const handleClick = () => setShow(!show)
 
-  // const [create,setCreate] = useState(false);
+  
   const inputHandler = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
@@ -113,7 +116,7 @@ export const Signup = () => {
     }
 
     try {
-      let sign = await axios.post("http://localhost:8080/user/signup", payload)
+      let sign = await axios.post("https://way-to-globe-unit-6.onrender.com/user/signup", payload)
       alert("signup successfull")
       navigate("/login")
     }
@@ -124,7 +127,7 @@ export const Signup = () => {
   }
 
   const handleGoogle=()=>{
-    window.open("http://localhost:8080/auth/google","_self")
+    window.open("https://way-to-globe-unit-6.onrender.com/auth/google","_self")
   }
 
   return (
@@ -199,15 +202,8 @@ export const Signup = () => {
         <Box className="term checkboxCondition">
           Selecting this checkbox will keep you signed into your account on this device until you sign out. Do not select this on shared devices.
         </Box>
-
-
-
         <Box>
-
-
-
         </Box>
-
       </Box>
 
 
@@ -243,6 +239,7 @@ export const Signup = () => {
         </span>
       </p>
 
+
       <p style={{ marginTop: "25px" }}>Other ways to sign up</p>
 
       {/* <Link to="http://188.166.98.109:5000/auth/google"> <GoogleIcon sx={{ color: "blue" }}  */}
@@ -251,10 +248,12 @@ export const Signup = () => {
 
       {/* {create ? <Navigate to={'/login'}  />:""} */}
 
+
       <Box style={{ display: "flex", height: "35px", width: "60px", justifyContent: "space-around", mt: "-30px" }}>
         <Link><i style={{color:"black",fontSize:"20px"}} class="fa-brands fa-apple"></i></Link>
         <Link><i style={{fontSize:"20px"}} class="fa-brands fa-facebook"></i></Link>
       </Box>
+
     </MainDiv>
     </>
   );

@@ -19,7 +19,7 @@ const getFailure=()=>{
 }
 export const flightData=(val)=>(dispatch)=>{
     dispatch(getRequest())
-  return axios.get(`http://localhost:8080/flight?sort=${val}`).then((res)=>{
+  return axios.get(`https://way-to-globe-unit-6.onrender.com/flight?sort=${val}`).then((res)=>{
            console.log(res.data);
    return  dispatch(getSucess(res.data))
  }).catch((err)=>{

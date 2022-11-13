@@ -11,7 +11,9 @@ const userController=Router();
 
 userController.post("/signup",(req,res)=>{
     const {email,password,name}=req.body;
-    bcrypt.hash(password,6,async(err,hash)=>{
+    if(email!==""&&password!==""&&name!=="")
+    {
+      bcrypt.hash(password,6,async(err,hash)=>{
         if(err)
         {
             res.status(400).send("Something went wrong")
@@ -20,6 +22,10 @@ userController.post("/signup",(req,res)=>{
         await newUser.save();
         res.status(200).json({msg:"Signup Successfull"})
     });
+    }else{
+      res.send({msg:"something went wrong"})
+    }
+   
 });
 
 
