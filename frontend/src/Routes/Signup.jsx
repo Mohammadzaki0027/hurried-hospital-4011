@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import FullWidthTextField from "../components/Input";
 // import Checkbox from "@mui/material/Checkbox";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 // import GoogleIcon from "@mui/icons-material/Google";
 import axios from "axios";
-import { Box, Button, Checkbox, Heading } from "@chakra-ui/react";
+import { Box, Button, Checkbox, Input, InputGroup, InputRightElement, Heading } from "@chakra-ui/react";
+import Navbar from "../components/navbar/Navbar";
 
 const MainDiv = styled.div`
   display: flex;
@@ -42,11 +43,11 @@ const MainDiv = styled.div`
     width: 100%;
     padding-bottom: 10px;
   }
-  .checkbox {
+  /* .checkbox {
     justify-content: space-between;
     text-align: start;
     margin: 0.375rem;
-  }
+  } */
   .term {
     font-size: 14px;
   }
@@ -92,16 +93,62 @@ export const Signup = () => {
     surname: "",
   });
 
-  const [create,setCreate] = useState(false);
+  const [show, setShow] = React.useState(false)
+  const handleClick = () => setShow(!show)
+
+  // const [create,setCreate] = useState(false);
   const inputHandler = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
+
+  const navigate = useNavigate()
+
+  const handleSign = async () => {
+
+    const payload = {
+      email: user.email,
+      password: user.password,
+      name: `${user.firstname} ${user.surname}`
+    }
+
+    try {
+      let sign = await axios.post("http://localhost:8080/user/signup", payload)
+      alert("signup successfull")
+      navigate("/login")
+    }
+    catch (err) {
+      console.log(err)
+      alert("Signup failed")
+    }
+  }
+
+  const handleGoogle=()=>{
+    window.open("http://localhost:8080/auth/google","_self")
+  }
+
   return (
+<>
+    <Navbar/>
     <MainDiv>
       <Box>
         <Heading mr="60px">Create an account</Heading>
-        <Box>or</Box>
+        <Box onClick={handleGoogle} style={{
+            height: "60px", width: "400px",
+            display: "flex",
+            padding:"5px",
+            justifyContent:"space-between",
+            borderRadius: "5px",
+            cursor: "pointer", background: "#3662d8"
+          }}>
+              <Box borderRadius={"5px"} display={"flex"} justifyContent="center" alignItems={"center"}  flex="1" backgroundColor="white" >
+                      <img style={{height:"16px",width:"16px"}} src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png" alt="" />
+              </Box>
+              <Box flex={"7"} display={"flex"} justifyContent="center" alignItems={"center"} >
+                 <p style={{color:"white",fontSize:"18px"}}>Sign in with Google</p>
+            </Box>
+          </Box>
+        <Box  w={"400px"}  display={"flex"} justifyContent="center" alignItems={"center"} >or</Box>
         <FullWidthTextField
           text={"Email address"}
           handle={inputHandler}
@@ -117,35 +164,48 @@ export const Signup = () => {
           name={"surname"}
           handle={inputHandler}
         />
-        <FullWidthTextField
+        {/* <FullWidthTextField
           text={"Password"}
           name={"password"}
           handle={inputHandler}
-        />
+        /> */}
+          <InputGroup size='md'>
+            <Input
+           size="md"
+            p={"5px"}
+              pr='4.5rem'
+              type={show ? 'text' : 'password'}
+              placeholder='Enter password'
+              name="password"
+              onChange={inputHandler}
+            />
+            <InputRightElement width='4.5rem' display="flex" justifyContent="flex-end" alignItems={"center"}>
+              <i class="fa-solid fa-eye" size='sm' onClick={handleClick}>
+                {/* {show ? 'Hide' : 'Show'} */}
+              </i>
+            </InputRightElement>
+          </InputGroup>
       </Box>
       <Box className="checkbox">
-        {/* <Checkbox {...label} defaultChecked /> */}
-        {/* <label htmlFor="">This is a public or shared device</label> */}
 
-       
-        
+
+
+
         <Checkbox size={"md"} defaultChecked>Keep me signed in</Checkbox>
 
-       
-        
+
+
         <Box className="term checkboxCondition">
-      Selecting this checkbox will keep you signed into your account on this device until you sign out. Do not select this on shared devices.
-      </Box>
+          Selecting this checkbox will keep you signed into your account on this device until you sign out. Do not select this on shared devices.
+        </Box>
 
 
 
-      <Box>
-
-      <Checkbox size={"md"} defaultChecked>I'd like to receive travel deals,
-       special offers and other information from Expedia via email.</Checkbox>
+        <Box>
 
 
-      </Box>
+
+        </Box>
 
       </Box>
 
@@ -170,34 +230,31 @@ export const Signup = () => {
       </Box>
       <Box>
         <Button
-          onClick={() => {
-            axios
-              .post(`http://188.166.98.109:5000/register`, user)
-              .then((data) => alert("you account created")).then(data=>setCreate(true))
-          }}
+          onClick={handleSign}
         >
           Continue
         </Button>
       </Box>
-      <p>
+      <p style={{ marginTop: "25px" }}>
         Already have an account?
         <span>
           <Link to={"/login"}> Sign in</Link>
         </span>
       </p>
 
-      <p>Other ways to sign up</p>
-    
+      <p style={{ marginTop: "25px" }}>Other ways to sign up</p>
+
       {/* <Link to="http://188.166.98.109:5000/auth/google"> <GoogleIcon sx={{ color: "blue" }}  */}
-                  
-                  {/* /></Link> */}
+
+      {/* /></Link> */}
 
       {/* {create ? <Navigate to={'/login'}  />:""} */}
 
-{/* <Box style={{display:"flex"}}> */}
-      <Link><i class="fa-brands fa-apple"></i></Link>
-      <Link><i class="fa-brands fa-facebook"></i></Link>
-      {/* </Box> */}
+      <Box style={{ display: "flex", height: "35px", width: "60px", justifyContent: "space-around", mt: "-30px" }}>
+        <Link><i style={{color:"black",fontSize:"20px"}} class="fa-brands fa-apple"></i></Link>
+        <Link><i style={{fontSize:"20px"}} class="fa-brands fa-facebook"></i></Link>
+      </Box>
     </MainDiv>
+    </>
   );
 };

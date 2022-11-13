@@ -23,8 +23,6 @@ userController.post("/signup",(req,res)=>{
 });
 
 
-
-
 userController.post("/login", async (req, res) => {
     const { email, password } = req.body;
     const user = await UserModel.findOne({ email });

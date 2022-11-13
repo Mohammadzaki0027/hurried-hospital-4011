@@ -1,9 +1,23 @@
 const express=require("express")
-const { connection } = require("./Config/db")
+
+const { connection, SERVER_ROOT_URL, GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET } = require("./Config/db")
+
+
 const { FlightModule } = require("./Model/flight.module")
 const { carRouter } = require("./Routes/Carfilter.route")
 const {userController}=require("./Routes/user.routes")
+
+const passport = require("./Config/GoogleAuth")
+
 const app=express()
+const redirectURL="/auth/google"
+
+
+
+
+
+
+
 let cors = require('cors')
 require("dotenv").config()
 const PORT=process.env.PORT||8000
@@ -39,6 +53,25 @@ app.get("/flight",async (req,res)=>{
    
 })
 
+
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile','email'] }));
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login',session:false }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    console.log(req)
+    res.redirect('http://localhost:3000');
+  });
+
+
+
+
+
+
+
 app.use("/",carRouter)
 
 app.listen(PORT,async()=>{
@@ -51,3 +84,7 @@ app.listen(PORT,async()=>{
         console.log(error);
     }
 })
+
+
+
+
