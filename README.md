@@ -65,7 +65,7 @@ sections. Here you can see demo products of bluemercury.com.
 ## 🔗 Collaborators Profile Links
 | Collaborators  | Github  |  Linkedin   | Portfolio   |
 | ---------- | -----------|------------|---------- |
-| Mohammad zaki | [![github](https://img.shields.io/badge/github-1DA1F2?style=for-the-badge&logo=github&logoColor=white)](#)  |  [![linkedin](#) | [![portfolio](#) |
+| Mohammad zaki | [![github](https://img.shields.io/badge/github-1DA1F2?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Mohammadzaki0027)  |  [![linkedin](https://www.linkedin.com/in/mohammad-zaki-b48821158/) | [![portfolio](https://mohammadzaki0027.github.io/) |
 | Priyanshu Tyagi | [![github](https://img.shields.io/badge/github-1DA1F2?style=for-the-badge&logo=github&logoColor=white)](#)   
 | Pallavi Kumari | [![github](https://img.shields.io/badge/github-1DA1F2?style=for-the-badge&logo=github&logoColor=white)](#) | 
 | Ajit Shelake | [![github](https://img.shields.io/badge/github-1DA1F2?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ashelake)| [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ashelake/) | [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ashelake.github.io/) 
