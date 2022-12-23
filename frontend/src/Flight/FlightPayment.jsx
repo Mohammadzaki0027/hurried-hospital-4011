@@ -11,7 +11,7 @@ export const FlightPayment = () => {
   const [data,setData]=useState({})
   const {id}=useParams()
     useEffect(()=>{
-      axios.get(`https://way-to-globe-unit-6.onrender.com/flightcheckout/${id}`).then((res)=>{
+      axios.get(`https://waytoglobe.onrender.com/flightcheckout/${id}`).then((res)=>{
         console.log(res.data)
         setData(res.data)
       })

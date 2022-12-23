@@ -60,7 +60,7 @@ const Carpayment = () => {
   };
   const fetchpayment = () => {
     axios
-      .post("https://way-to-globe-unit-6.onrender.com/carpayment", paymentdata)
+      .post("https://waytoglobe.onrender.com/carpayment", paymentdata)
       .then((r) => {
         console.log(r);
         toast({

@@ -99,7 +99,7 @@ const Login = () => {
       email, password
     }
     try {
-      let res = await axios.post("https://way-to-globe-unit-6.onrender.com/user/login", payload)
+      let res = await axios.post("https://waytoglobe.onrender.com/user/login", payload)
       console.log(res.data)
       localStorage.setItem("token", res.data.token)
       alert("You are logged in")
@@ -120,7 +120,7 @@ const Login = () => {
   }
 
 const handleGoogle=()=>{
-  window.open("https://way-to-globe-unit-6.onrender.com/auth/google","_self")
+  window.open("https://waytoglobe.onrender.com/auth/google","_self")
 }
 
 

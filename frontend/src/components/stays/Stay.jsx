@@ -12,7 +12,7 @@ export const Stay = () => {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    axios.get("https://way-to-globe-unit-6.onrender.com/stay").then((r) => {
+    axios.get("https://waytoglobe.onrender.com/stay").then((r) => {
       setData(r.data.filter((item) => item.city.includes(query || "Mumbai")));
     });
   }, [query]);
