@@ -65,7 +65,8 @@ app.get(
   function (req, res) {
     // Successful authentication, redirect home.
     console.log(req);
-    res.redirect("http://localhost:3000");
+    // res.redirect("http://localhost:3000");
+    res.redirect("https://waytoglobe.vercel.app/");
   }
 );
 
